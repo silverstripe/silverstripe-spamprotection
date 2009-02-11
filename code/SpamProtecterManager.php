@@ -3,7 +3,7 @@
  * This class is responsible for setting an system-wide spam protecter field 
  * and add the protecter field to a form
  */
-class SpamProctecterManager {
+class SpamProtecterManager {
 	
 	static $spam_protecter = null;
 	

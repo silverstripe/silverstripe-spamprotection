@@ -24,7 +24,7 @@ Before putting the following code in '_config.php', make sure you have a subclas
 
 <<<< CODE STARTS >>>>
 
-SpamProctecterManager::set_spam_protecter('MollomField');
+SpamProtecterManager::set_spam_protecter('MollomField');
 
 <<<< CODE ENDS >>>>
 
@@ -40,7 +40,7 @@ This following code should appear after the form creation.
 
 <<<< CODE STARTS >>>>
 
-$protectorField = SpamProctecterManager::update_form('MollomField', 'Captcha', $form, 'Message', $callbackObj);
+$protectorField = SpamProtecterManager::update_form('MollomField', 'Captcha', $form, 'Message', $callbackObj);
 
 <<<< CODE ENDS >>>>
 
