@@ -29,19 +29,10 @@ class SpamProtecterManager {
 	 * 					*** Most of the web service doesn't require this.   
 	 * @return 	SpamProtecterField					
 	 */
-	static function update_form($protecterFieldName, $protecterFieldTitle, $form, $before=null, $callbackObject=null, $fieldsToSpamServiceMapping=null) {
-	
-		$protecterField = new self::$spam_protecter($protecterFieldName, $protecterFieldTitle);
-		$protecterField->setCallbackObject($callbackObject);
-		
-		if ($before && $fields->fieldByName($before)) {
-			$form->Fields()->insertBefore($protecterField, $before);
-		}
-		else {
-			$form->Fields()->push($protecterField);
-		}
-		
-		return $protecterField;
+	static function update_form($form, $before=null, $callbackObject=null, $fieldsToSpamServiceMapping=null) {
+		$protecter = new self::$spam_protecter();
+		$protecter->updateForm($form, $before, $callbackObject, $fieldsToSpamServiceMapping);
+		return $protecter;
 	}
 }
 ?>
