@@ -34,5 +34,15 @@ class SpamProtecterManager {
 		$protecter->updateForm($form, $before, $callbackObject, $fieldsToSpamServiceMapping);
 		return $protecter;
 	}
+	
+	/**
+	 * Mark a DataObject as spam
+	 *
+	 * @param DataObject
+	 */
+	static function mark_spam($object) {
+		$protecter = new self::$spam_protecter();
+		return $protecter->markAsSpam($object);
+	}
 }
 ?>

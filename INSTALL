@@ -24,7 +24,7 @@ Before putting the following code in '_config.php', make sure you have a subclas
 
 <<<< CODE STARTS >>>>
 
-SpamProtecterManager::set_spam_protecter('MollomField');
+SpamProtecterManager::set_spam_protecter('MollomSpamProtector');
 
 <<<< CODE ENDS >>>>
 
