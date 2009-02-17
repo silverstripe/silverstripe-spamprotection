@@ -27,12 +27,17 @@ class SpamProtecterManager {
 	 * 					and a string of field names (seperated by comma) as a value.
 	 *                 	The naming of the fields is based on the implementation of the subclass of SpamProtecterField.
 	 * 					*** Most of the web service doesn't require this.   
-	 * @return 	SpamProtector object					
+	 * @return 	SpamProtector 	object or return null if the spamprotecter class is not found 
+	 *							or spamprotecterfield creation fails. 					
 	 */
 	static function update_form($form, $before=null, $callbackObject=null, $fieldsToSpamServiceMapping=null) {
+		if (!class_exists(self::$spam_protecter)) return null;
+		
 		$protecter = new self::$spam_protecter();
-
-		$protecter->updateForm($form, $before, $callbackObject, $fieldsToSpamServiceMapping);
+		$check = $protecter->updateForm($form, $before, $callbackObject, $fieldsToSpamServiceMapping);
+		
+		if (!$check) return null;
+		
 		return $protecter;
 	}
 	

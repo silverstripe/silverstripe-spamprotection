@@ -40,7 +40,7 @@ This following code should appear after the form creation.
 
 <<<< CODE STARTS >>>>
 
-$protectorField = SpamProtecterManager::update_form('MollomField', 'Captcha', $form, 'Message', $callbackObj);
+$protector = SpamProtecterManager::update_form('MollomField', 'Captcha', $form, 'Message', $callbackObj);
 
 <<<< CODE ENDS >>>>
 
