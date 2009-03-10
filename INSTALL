@@ -20,7 +20,8 @@ Read the instructions below to setup the initial configuration of the module.
 SETTING UP THE MODULE (in 'mysite/_config.php')
 ------------------------------------------------------
 
-Before putting the following code in '_config.php', make sure you have a subclass of 'SpamProtecterField' installed or written. One example of 'SpamProtecter' subclass is 'MollomField'.
+Before putting the following code in '_config.php', make sure you have a subclass of 'SpamProtecterField' installed or written. One 
+example of 'SpamProtecter' subclass is 'MollomField'.
 
 <<<< CODE STARTS >>>>
 
@@ -50,24 +51,3 @@ What does this do?
 This code add an instance of a 'SpamProtecterField' class specified in SETTING UP THE MODULE section. The newly created field will have MollomField field. The first parameter is a Form object in which the field will be added into and the second parameter tells SpamProtecterManager to place the new field before a field named 'Message'. The last parameter is an object that get notified when the spam verification is done and given the form object. 
 
 The purpose of having callback object is we can process the submission differently according to the spam status of the submission. For example, put any submission with 'spam' status into spam queue. 
-
-IMPLEMENTING A CALLBACK OBJECT 
-------------------------------
-
-Callback object should implements Spamable interface and at least implement 2 functions - markAsHam() and markAsSpam()
-
-<<<< CODE STARTS >>>>
-
-class ContactSpamable implements Spamable {
-
-	function markAsSpam($form) {
-		// code for adding submission into spam checking queue 
-	}
-	
-	function markAsHam($form) {
-		// do nothing
-	}
-}
-
-<<<< CODE ENDS >>>>
-
