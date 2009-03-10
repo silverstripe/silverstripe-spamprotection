@@ -17,8 +17,6 @@ class SpamProtecterManager {
 	
 	/**
 	 * Add the spam protecter field to a form
-	 * @param  	string 	the name of the protecter field
-	 * @param 	string	the title of the protecter field
 	 * @param 	Form 	the form that the protecter field added into 
 	 * @param 	string	the name of the field that the protecter field will be added in front of
 	 * @param 	object	an object that implements Spamable
