@@ -37,7 +37,7 @@ class SpamProtecterManager {
 		}
 		catch (Exception $e) {
 			$form->setMessage(
-				_t("SpamProtection.SPAMSPECTIONFAILED", self::$spam_protecter . " failed."),
+				_t("SpamProtection.SPAMSPECTIONFAILED", "This website is designed to be protected against spam by " . self::$spam_protecter . "   but this is not correctly set up currently."),
 				"warning"
 				);
 			return null;
