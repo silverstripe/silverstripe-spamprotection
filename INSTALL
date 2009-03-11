@@ -41,7 +41,7 @@ This following code should appear after the form creation.
 
 <<<< CODE STARTS >>>>
 
-$protector = SpamProtecterManager::update_form($form, 'Message', $callbackObj);
+$protector = SpamProtecterManager::update_form($form, 'Message');
 
 <<<< CODE ENDS >>>>
 
