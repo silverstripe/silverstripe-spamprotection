@@ -16,6 +16,13 @@ class SpamProtecterManager {
 	}
 	
 	/**
+	 * Get the name of the spam protector class
+	 */
+	static function get_spam_protecter() {
+		return self::$spam_protecter;
+	}
+	
+	/**
 	 * Add the spam protecter field to a form
 	 * @param 	Form 	the form that the protecter field added into 
 	 * @param 	string	the name of the field that the protecter field will be added in front of
