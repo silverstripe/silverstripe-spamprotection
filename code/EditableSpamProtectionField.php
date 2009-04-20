@@ -77,8 +77,11 @@ class EditableSpamProtectionField extends EditableFormField {
 		return "";
 	}
 	
-	function EditSegment() {
-		return $this->renderWith( $this->class );
+	/**
+	 * @return string
+	 */
+	public function Icon() {
+		return 'spamprotection/images/' . strtolower($this->class) . '.png';
 	}
+	
 }
-?>
