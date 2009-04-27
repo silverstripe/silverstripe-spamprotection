@@ -9,36 +9,12 @@
 
 class EditableSpamProtectionField extends EditableFormField {
 	
-	static $db = array(
-
-	);
-	
 	static $singular_name = 'Spam Protection Field';
 	static $plural_name = 'Spam Protection Fields';
 	
 	function __construct( $record = null, $isSingleton = false ) {
 
 		parent::__construct( $record, $isSingleton );
-	}
-	
-	function ExtraOptions() {
-		
-		// eventually replace hard-coded "Fields"?
-		$baseName = "Fields[$this->ID]";
-		
-		$extraFields = new FieldSet();
-		
-		foreach( parent::ExtraOptions() as $extraField )
-			$extraFields->push( $extraField );
-			
-		if( $this->readonly )
-			$extraFields = $extraFields->makeReadonly();	
-			
-		return $extraFields;		
-	}
-	
-	function populateFromPostData($data) {
-		parent::populateFromPostData($data);
 	}
 	
 	function getFormField() {
@@ -54,27 +30,11 @@ class EditableSpamProtectionField extends EditableFormField {
 			if($protector) {
 				$protector = new $protector();
 				if($class = $protector->getFieldName()) {
-					$spamProtection = new $class($class, $this->Title);
-					if($spamProtection) {
-						// set field mapping for all the fields in this form.
-						// fields should have the same ParentID as this 
-						$fields = DataObject::get("EditableTextField", "ParentID = '$this->ParentID'");
-						$fields = ($fields) ? $fields->toArray('Name') : null;
-						
-						// @TODO get FieldMapping Working.
-						$spamProtection->setFieldMapping(null, $fields);
-						return $spamProtection;
-					}
+					return new $class($class, $this->Title);
 				}
 			}
 		}
 		return false;
-	}
-	/**
-	 * Populates the default fields. 
-	 */
-	function DefaultField() {
-		return "";
 	}
 	
 	/**
