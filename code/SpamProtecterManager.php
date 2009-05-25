@@ -35,21 +35,18 @@ class SpamProtecterManager {
 	 *							also null if spamprotecterfield creation fails. 					
 	 */
 	static function update_form($form, $before=null, $fieldsToSpamServiceMapping=null) {
-		if (!class_exists(self::$spam_protecter)) return null;
+		$check = null;
+		$protectorClass = self::$spam_protecter;
+		if(!class_exists($protectorClass)) return null;
 		
-		$protecter = new self::$spam_protecter();
+		$protecter = new $protectorClass();
 		try {
 			$check = $protecter->updateForm($form, $before, $fieldsToSpamServiceMapping);
-		}
-		catch (Exception $e) {
-			$form->setMessage(
-				_t("SpamProtection.SPAMSPECTIONFAILED", "This website is designed to be protected against spam by " . self::$spam_protecter . "   but this is not correctly set up currently."),
-				"warning"
-				);
-			return null;
+		} catch (Exception $e) {
+			user_error("SpamProtecterManager::update_form(): '$protectorClass' is not correctly set up.", E_USER_WARNING);
 		}
 		
-		if (!$check) return null;
+		if(!$check) return null;
 		
 		return $protecter;
 	}
