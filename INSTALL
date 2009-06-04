@@ -21,7 +21,7 @@ SETTING UP THE MODULE (in 'mysite/_config.php')
 ------------------------------------------------------
 
 Before putting the following code in '_config.php', make sure you have a subclass of 'SpamProtectorField' installed or written. One 
-example of 'SpamProtecter' subclass is 'MollomField'.
+example of 'SpamProtector' subclass is 'MollomField'.
 
 <<<< CODE STARTS >>>>
 
@@ -50,4 +50,4 @@ What does this do?
 
 This code add an instance of a 'SpamProtectorField' class specified in SETTING UP THE MODULE section. The newly created field will have 
 MollomField field. The first parameter is a Form object in which the field will be added into and the second parameter tells 
-SpamProtecterManagor to place the new field before a field named 'Message'. 
+SpamProtectorManagor to place the new field before a field named 'Message'. 

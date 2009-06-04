@@ -29,10 +29,10 @@ class SpamProtectorManager {
 	 * @param 	array 	an associative array 
 	 * 					with the name of the spam web service's field, for example post_title, post_body, author_name
 	 * 					and a string of field names (seperated by comma) as a value.
-	 *                 	The naming of the fields is based on the implementation of the subclass of SpamProtecterField.
+	 *                 	The naming of the fields is based on the implementation of the subclass of SpamProtectorField.
 	 * 					*** Most of the web service doesn't require this.   
-	 * @return 	SpamProtector 	object on success or null if the spamprotecter class is not found 
-	 *							also null if spamprotecterfield creation fails. 					
+	 * @return 	SpamProtector 	object on success or null if the spamprotector class is not found 
+	 *							also null if spamprotectorfield creation fails. 					
 	 */
 	static function update_form($form, $before=null, $fieldsToSpamServiceMapping=null) {
 		$check = null;
@@ -41,9 +41,9 @@ class SpamProtectorManager {
 		
 		$protector = new $protectorClass();
 		try {
-			$check = $protecter->updateForm($form, $before, $fieldsToSpamServiceMapping);
+			$check = $protector->updateForm($form, $before, $fieldsToSpamServiceMapping);
 		} catch (Exception $e) {
-			user_error("SpamProtecterManager::update_form(): '$protectorClass' is not correctly set up.", E_USER_WARNING);
+			user_error("SpamProtectorManager::update_form(): '$protectorClass' is not correctly set up.", E_USER_WARNING);
 		}
 		
 		if(!$check) return null;
