@@ -20,12 +20,12 @@ Read the instructions below to setup the initial configuration of the module.
 SETTING UP THE MODULE (in 'mysite/_config.php')
 ------------------------------------------------------
 
-Before putting the following code in '_config.php', make sure you have a subclass of 'SpamProtecterField' installed or written. One 
+Before putting the following code in '_config.php', make sure you have a subclass of 'SpamProtectorField' installed or written. One 
 example of 'SpamProtecter' subclass is 'MollomField'.
 
 <<<< CODE STARTS >>>>
 
-SpamProtecterManager::set_spam_protecter('MollomSpamProtector');
+SpamProtectorManager::set_spam_protector('MollomSpamProtector');
 
 <<<< CODE ENDS >>>>
 
@@ -34,20 +34,20 @@ What does this do?
 
 This tell 'SpamProtection' module that you want to use 'MollomField' as a spam protection module across your site.
 
-UPDATING A FORM TO INCLUDE THE SPAM PROTECTER FIELD 
+UPDATING A FORM TO INCLUDE THE SPAM PROTECTOR FIELD 
 ---------------------------------------------------
 
 This following code should appear after the form creation. 
 
 <<<< CODE STARTS >>>>
 
-$protector = SpamProtecterManager::update_form($form, 'Message');
+$protector = SpamProtectorManager::update_form($form, 'Message');
 
 <<<< CODE ENDS >>>>
 
 What does this do?
 ------------------
 
-This code add an instance of a 'SpamProtecterField' class specified in SETTING UP THE MODULE section. The newly created field will have 
+This code add an instance of a 'SpamProtectorField' class specified in SETTING UP THE MODULE section. The newly created field will have 
 MollomField field. The first parameter is a Form object in which the field will be added into and the second parameter tells 
-SpamProtecterManager to place the new field before a field named 'Message'. 
+SpamProtecterManagor to place the new field before a field named 'Message'. 

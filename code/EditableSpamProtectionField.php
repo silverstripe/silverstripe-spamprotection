@@ -26,7 +26,7 @@ class EditableSpamProtectionField extends EditableFormField {
 	}
 	
 	function createField() {
-		if($protector = SpamProtecterManager::get_spam_protecter()) {
+		if($protector = SpamProtectorManager::get_spam_protector()) {
 			if($protector) {
 				$protector = new $protector();
 				if($class = $protector->getFieldName()) {

@@ -9,7 +9,7 @@
  * been obtained. 
  * 
  */
-class SpamProtecterField extends FormField {
+class SpamProtectorField extends FormField {
 	
 	protected $spanControlCallbackObj = null;
 	
