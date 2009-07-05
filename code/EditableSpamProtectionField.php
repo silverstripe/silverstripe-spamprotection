@@ -44,4 +44,7 @@ class EditableSpamProtectionField extends EditableFormField {
 		return 'spamprotection/images/' . strtolower($this->class) . '.png';
 	}
 	
+	function showInReports() {
+		return false;
+	}
 }
