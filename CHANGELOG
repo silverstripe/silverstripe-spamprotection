@@ -1,0 +1,5 @@
+0.1:
+- initial release
+
+0.2
+- Renamed 'SpamProtecterManager' to 'SpamProtectorManager'. Note the typo with the 'er'

@@ -7,11 +7,16 @@ Maintainer Contact
 Saophalkun Ponlu
 <phalkunz (at) silverstripe (dot) com>
 
+Will Rossiter
+<will (at) silverstripe (dot) com>
+
 Requirements
 -----------------------------------------------
+SilverStripe 2.3
 
 Documentation
 -----------------------------------------------
+http://doc.silverstripe.com/doku.php?id=modules:spamprotection
 
 Installation Instructions
 -----------------------------------------------
@@ -19,6 +24,7 @@ See INSTALL
 
 Usage Overview
 -----------------------------------------------
+See INSTALL
 
 Known issues
 -----------------------------------------------
