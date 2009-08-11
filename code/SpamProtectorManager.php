@@ -1,15 +1,19 @@
 <?php
 /** 
  * This class is responsible for setting an system-wide spam protecter field 
- * and add the protecter field to a form
+ * and add the protecter field to a form.
+ * 
+ * @package spamprotection
  */
+
 class SpamProtectorManager {
 	
 	static $spam_protector = null;
 	
 	/**
 	 * Set the name of the spam protecter class
-	 * @param 	string 	the name of protecter field class
+	 * 
+	 * @param String the name of protecter field class
 	 */
 	static function set_spam_protector($protector) {
 		self::$spam_protector = $protector;
@@ -37,13 +41,16 @@ class SpamProtectorManager {
 	static function update_form($form, $before=null, $fieldsToSpamServiceMapping=null) {
 		$check = null;
 		$protectorClass = self::$spam_protector;
-		if(!class_exists($protectorClass)) return null;
+		
+		if(!class_exists($protectorClass)) {
+			user_error("Spam Protector class '$protectorClass' does not exist. Please define a valid Spam Protector", E_USER_WARNING);
+		}
 		
 		$protector = new $protectorClass();
 		try {
 			$check = $protector->updateForm($form, $before, $fieldsToSpamServiceMapping);
 		} catch (Exception $e) {
-			user_error("SpamProtectorManager::update_form(): '$protectorClass' is not correctly set up.", E_USER_WARNING);
+			user_error("SpamProtectorManager::update_form(): '$protectorClass' is not correctly set up. " . $e, E_USER_WARNING);
 		}
 		
 		if(!$check) return null;
