@@ -46,10 +46,8 @@ class SpamProtectorManager {
 			user_error("Spam Protector class '$protectorClass' does not exist. Please define a valid Spam Protector", E_USER_WARNING);
 		}
 		
-		if(!is_object($protector)) {
-			$protector = new $protectorClass();
-		}
-
+		if(!$protectorClass) return null;
+		
 		try {
 			$check = $protector->updateForm($form, $before, $fieldsToSpamServiceMapping);
 		} catch (Exception $e) {
