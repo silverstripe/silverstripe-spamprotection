@@ -47,6 +47,7 @@ class SpamProtectorManager {
 		}
 		
 		if(!$protectorClass) return null;
+		$protector = new $protectorClass();
 		
 		try {
 			$check = $protector->updateForm($form, $before, $fieldsToSpamServiceMapping);
