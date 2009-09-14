@@ -8,11 +8,15 @@
  * markAsSpam() and markAsHam should be called in validate() after the status of the spam checking has
  * been obtained. 
  * 
+ * @package spamprotection
  */
 class SpamProtectorField extends FormField {
 	
 	protected $spanControlCallbackObj = null;
 	
+	/**
+	 * Set the Callback Object
+	 */
 	function setCallbackObject($callbackObject) {
 		$this->spanControlCallbackObj = $callbackObject;
 	}
