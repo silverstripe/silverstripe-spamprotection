@@ -1,44 +1,34 @@
 <?php
 /**
  * This class acts as a template for spam protecting form field, for instance MollomField.
- * It provides a number of properties for mapping fields of the form which this object belongs to
- * to spam checking service fields. 
- * 
- * In order to further process the form values or take any action according the status of spam checking,
- * markAsSpam() and markAsHam should be called in validate() after the status of the spam checking has
- * been obtained. 
- * 
+ *
  * @package spamprotection
  */
-class SpamProtectorField extends FormField {
-	
-	protected $spanControlCallbackObj = null;
+abstract class SpamProtectorField extends FormField {
 	
 	/**
-	 * Set the Callback Object
+	 * Fields to map spam protection too.
+	 *
+	 * @var array
 	 */
-	function setCallbackObject($callbackObject) {
-		$this->spanControlCallbackObj = $callbackObject;
-	}
- 
-	/**
-	 * Tell the callback object the submission is spam
-	 */ 
-	protected function markAsSpam() {
-		if ($this->spanControlCallbackObj && $this->spanControlCallbackObj instanceof Spamable) {
-			$this->spanControlCallbackObj->markAsSpam($this->getForm());
-		}
-	}
+	private $spamFieldMapping = array();
+	
 	
 	/**
-	 * Tell the callback object the submission is ham
+	 * Set the fields to map spam protection too
+	 * 
+	 * @param Array array of Field Names
 	 */
-	protected function markAsHam() {
-		if ($this->spanControlCallbackObj && $this->spanControlCallbackObj instanceof Spamable) {
-			$this->spanControlCallbackObj->markAsHam($this->getForm());
-		}
+	public function setFieldMapping($array) {
+		$this->spamFieldMapping = $array;
 	}
 	
-	
+	/**
+	 * Get the fields that are mapped via spam protection
+	 *
+	 * @return Array
+	 */
+	public function getFieldMapping() {
+		return $this->spamFieldMapping;
+	}
 }
-?>
