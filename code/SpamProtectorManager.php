@@ -47,6 +47,9 @@ class SpamProtectorManager {
 	static function update_form($form, $before = null, $fieldsToSpamServiceMapping = array(), $title = null, $rightTitle = null) {
 		$protectorClass = self::get_spam_protector();
 		
+		// Don't update if no protector is set
+		if(!$protectorClass) return;
+		
 		if(!class_exists($protectorClass)) {
 			return user_error("Spam Protector class '$protectorClass' does not exist. Please define a valid Spam Protector", E_USER_WARNING);
 		}
