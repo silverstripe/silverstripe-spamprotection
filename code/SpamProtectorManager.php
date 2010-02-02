@@ -48,7 +48,7 @@ class SpamProtectorManager {
 		$protectorClass = self::get_spam_protector();
 		
 		// Don't update if no protector is set
-		if(!$protectorClass) return;
+		if(!$protectorClass) return false;
 		
 		if(!class_exists($protectorClass)) {
 			return user_error("Spam Protector class '$protectorClass' does not exist. Please define a valid Spam Protector", E_USER_WARNING);
@@ -85,7 +85,11 @@ class SpamProtectorManager {
 	 * @param String Feedback on the $object usually 'spam' or 'ham' for non spam entries
 	 */
 	static function send_feedback($object, $feedback) {
-		$protector = new self::$spam_protector();
+		$protectorClass = self::get_spam_protector();
+		
+		if(!$protectorClass) return false;
+		
+		$protector = new $protectorClass();
 		return $protector->sendFeedback($object, $feedback);
 	}
 }
