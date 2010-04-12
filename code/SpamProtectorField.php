@@ -17,7 +17,7 @@ abstract class SpamProtectorField extends FormField {
 	/**
 	 * Set the fields to map spam protection too
 	 * 
-	 * @param Array array of Field Names
+	 * @param Array array of Field Names, where the indexes of the array are the field names of the form and the values are the field names of the spam/captcha service
 	 */
 	public function setFieldMapping($array) {
 		$this->spamFieldMapping = $array;
