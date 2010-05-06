@@ -1,0 +1,8 @@
+0.1:
+- initial release
+
+0.2
+- Renamed 'SpamProtecterManager' to 'SpamProtectorManager'. Note the typo with the 'er'
+
+0.3 (trunk)
+- Updated Error Reporting to be a bit more verbose
