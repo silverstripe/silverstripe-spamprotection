@@ -2,7 +2,7 @@
 
 ## Install
 
-1. Unzip this file (spamprotection-0.1.tar.gz) inside your SilverStripe installation directory.
+1. Unzip this file (spamprotection-0.3.tar.gz) inside your SilverStripe installation directory.
 It should be at the same level as the 'cms' and 'sapphire' modules.
 
 2. Ensure the directory name for the module is 'spamprotection'. 
