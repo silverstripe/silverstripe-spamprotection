@@ -6,28 +6,29 @@
  * 
  * @package spamprotection
  */
-
-class EditableSpamProtectionField extends EditableFormField {
+if(class_exists('EditableFormField')){
+	class EditableSpamProtectionField extends EditableFormField {
 	
-	static $singular_name = 'Spam Protection Field';
+		static $singular_name = 'Spam Protection Field';
 	
-	static $plural_name = 'Spam Protection Fields';
+		static $plural_name = 'Spam Protection Fields';
 	
-	function getFormField() {
-		if($protector = SpamProtectorManager::get_spam_protector()) {
-			if($protector) {
-				$protector = new $protector();
-				return $protector->getFormField($this->Name, $this->Title, null);
+		function getFormField() {
+			if($protector = SpamProtectorManager::get_spam_protector()) {
+				if($protector) {
+					$protector = new $protector();
+					return $protector->getFormField($this->Name, $this->Title, null);
+				}
 			}
+			return false;
 		}
-		return false;
-	}
 
-	public function Icon() {
-		return 'spamprotection/images/' . strtolower($this->class) . '.png';
-	}
+		public function Icon() {
+			return 'spamprotection/images/' . strtolower($this->class) . '.png';
+		}
 	
-	function showInReports() {
-		return false;
+		function showInReports() {
+			return false;
+		}
 	}
 }
