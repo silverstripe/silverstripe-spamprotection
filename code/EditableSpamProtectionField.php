@@ -17,9 +17,19 @@ if(class_exists('EditableFormField')){
 			if($protector = SpamProtectorManager::get_spam_protector()) {
 				if($protector) {
 					$protector = new $protector();
+					
 					return $protector->getFormField($this->Name, $this->Title, null);
 				}
 			}
+			
+			return false;
+		}
+		
+		function getFieldValidationOptions() {
+			return new FieldSet();
+		}
+		
+		function getRequired() {
 			return false;
 		}
 
