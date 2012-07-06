@@ -12,6 +12,14 @@ abstract class SpamProtectorField extends FormField {
 	 * @var array
 	 */
 	private $spamFieldMapping = array();
+    
+    function __construct($name, $title = null, $value = null, $form = null, $rightTitle = null) {
+		parent::__construct($name, $title, $value);
+        
+        if(!empty($form)) {
+            $this->form=$form;
+        }
+    }
 	
 	
 	/**
