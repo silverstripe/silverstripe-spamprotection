@@ -26,7 +26,7 @@ if(class_exists('EditableFormField')){
 		}
 		
 		function getFieldValidationOptions() {
-			return new FieldSet();
+			return new FieldList();
 		}
 		
 		function getRequired() {
