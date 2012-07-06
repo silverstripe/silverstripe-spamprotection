@@ -56,7 +56,9 @@ class SpamProtectorManager {
 		
 		try {
 			$protector = new $protectorClass();
-			$field = $protector->getFormField("Captcha", $title, null, $form, $rightTitle);
+			$field = $protector->getFormField("Captcha", $title, null);
+			$field->setForm($form);
+			if ($rightTitle) $field->setRightTitle($rightTitle);
 			
 			if($field) {
 				// update the mapping
