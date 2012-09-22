@@ -1,0 +1,20 @@
+{
+	"name": "silverstripe/spamprotection",
+	"description": "SpamProtection module for SilverStripe.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "spamprotection"],
+	"authors": [
+	{
+		"name": "Saophalkun Ponlu",
+		"email": "phalkunz@silverstripe.com"
+	},
+	{
+		"name": "Will Rossiter",
+		"email": "will@silverstripe.com"
+	}
+	],
+	"require":
+	{
+		"silverstripe/framework": "3.*"
+	}
+}
