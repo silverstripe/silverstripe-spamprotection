@@ -14,5 +14,5 @@ if(class_exists('Comment')) {
 	 * If the comments module is installed then add the spam protection module 
 	 * to the comments form via this extension
 	 */
-	Object::add_extension('CommentingController', 'CommentSpamProtection');
+	CommentingController::add_extension('CommentSpamProtection');
 }
