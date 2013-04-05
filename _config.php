@@ -9,10 +9,11 @@
  * @package spamprotection
  */
 
-if(class_exists('Comment')) {
-	/**
-	 * If the comments module is installed then add the spam protection module 
-	 * to the comments form via this extension
-	 */
-	CommentingController::add_extension('CommentSpamProtection');
-}
+/**
+ * If the comments module is installed then add the spam protection module 
+ * to the comments form via this extension.
+ *
+ * Place this line in your mysite/_config.php
+ */
+
+// CommentingController::add_extension('CommentSpamProtection');
