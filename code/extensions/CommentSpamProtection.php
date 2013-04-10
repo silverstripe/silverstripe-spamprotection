@@ -17,7 +17,7 @@ class CommentSpamProtection extends Extension {
 			'Name' => 'author_name', 
 			'CommenterURL' => 'author_url', 
 			'Comment' => 'post_body', 
-			'Email' => 'author_email'
+			'Email' => 'author_mail'
 		));
 	}
 }
