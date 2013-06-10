@@ -15,7 +15,7 @@ class CommentSpamProtection extends Extension {
 	public function alterCommentForm(&$form) {
 		SpamProtectorManager::update_form($form, null, array(
 			'Name' => 'author_name', 
-			'CommenterURL' => 'author_url', 
+			'URL' => 'author_url', 
 			'Comment' => 'post_body', 
 			'Email' => 'author_mail'
 		));
