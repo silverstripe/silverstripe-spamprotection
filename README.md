@@ -1,5 +1,8 @@
 # SpamProtection Module
 
+[![Build Status](https://secure.travis-ci.org/silverstripe/silverstripe-spamprotection.png?branch=master)](http://travis-ci.org/silverstripe/silverstripe-spamprotection)
+
+
 ## Maintainer Contact
 
  * Saophalkun Ponlu
