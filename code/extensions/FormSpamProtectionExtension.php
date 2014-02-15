@@ -34,6 +34,7 @@ class FormSpamProtectionExtension extends Extension {
 	 * @var array $mappable_fields
 	 */
 	private static $mappable_fields =  array(
+		'id',
 		'title',
 		'body',
 		'contextUrl',
@@ -84,6 +85,8 @@ class FormSpamProtectionExtension extends Extension {
 
 		// add the form field
 		if($field = $protector->getFormField($name, $title)) {
+			$field->setForm($this->owner);
+			
 			$this->owner->Fields()->push($field);
 		}
 	
