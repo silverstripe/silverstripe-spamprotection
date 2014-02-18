@@ -13,7 +13,6 @@ if(class_exists('EditableFormField')) {
 		static $singular_name = 'Spam Protection Field';
 	
 		static $plural_name = 'Spam Protection Fields';
-		
 		/**
 		 * Fields to include spam detection for
 		 *
@@ -27,11 +26,10 @@ if(class_exists('EditableFormField')) {
 		);
 	
 		public function getFormField() {
-			
 			// Get protector
 			$protector = FormSpamProtectionExtension::get_protector();
-			if(empty($protector)) return false;
-			
+			if(!$protector) return false;
+
 			// Extract saved field mappings and update this field.
 			$fieldMapping = array();
 			foreach($this->getCandidateFields() as $otherField) {
@@ -80,7 +78,7 @@ if(class_exists('EditableFormField')) {
 				'EditableSpamProtectionField.SPAMFIELDMAPPING',
 				'Spam Field Mapping'
 			))->setDescription(_t(
-				'EditableSpamProtectionField.SPAMFIELDMAPPINGDESCRIPTION', 
+				'EditableSpamProtectionField.SPAMFIELDMAPPINGDESCRIPTION',
 				'Select the form fields that correspond to any relevant spam protection identifiers'
 			));
 

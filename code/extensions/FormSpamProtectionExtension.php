@@ -43,7 +43,7 @@ class FormSpamProtectionExtension extends Extension {
 	
 	/**
 	 * Instantiate a SpamProtector instance
-	 * 
+	 *
 	 * @param array $options Configuration options
 	 * @return SpamProtector
 	 */
@@ -51,15 +51,15 @@ class FormSpamProtectionExtension extends Extension {
 		// generate the spam protector
 		if(isset($options['protector'])) {
 			$protector = $options['protector'];
-
-			if(is_string($protector)) {
-				$protector = Injector::inst()->create($protector);
-			}
 		} else {
 			$protector = Config::inst()->get('FormSpamProtectionExtension', 'default_spam_protector');
-			$protector = Injector::inst()->create($protector);
 		}
-		return $protector;
+
+		if($protector && class_exists($protector)) {
+			return Injector::inst()->create($protector);	
+		} else {
+			return null;
+		}
 	}
 
 	/**
