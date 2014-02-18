@@ -25,6 +25,16 @@ interface SpamProtector {
 	 * @param string $name
 	 * @param string $title
 	 * @param mixed $value
+	 * @return FormField The resulting field
 	 */
 	public function getFormField($name = null, $title = null, $value = null);
+
+	/**
+	 * Set the fields to map spam protection too
+	 *
+	 * @param array $fieldMapping array of Field Names, where the indexes of the array are
+	 * the field names of the form and the values are the standard spamprotection
+	 * fields used by the protector
+	 */
+	public function setFieldMapping($fieldMapping);
 }

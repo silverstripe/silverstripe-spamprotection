@@ -8,11 +8,6 @@
  */
 
 class FormSpamProtectionExtension extends Extension {
-	
-	/**
-	 * @var array
-	 */
-	private $fieldMapping = array();
 
 	/**
 	 * @config
@@ -45,13 +40,14 @@ class FormSpamProtectionExtension extends Extension {
 		'authorIp',
 		'authorId'
 	);
-
+	
 	/**
-	 * Activates the spam protection module.
-	 *
-	 * @param array $options
+	 * Instantiate a SpamProtector instance
+	 * 
+	 * @param array $options Configuration options
+	 * @return SpamProtector
 	 */
-	public function enableSpamProtection($options = array()) {
+	public static function get_protector($options = null) {
 		// generate the spam protector
 		if(isset($options['protector'])) {
 			$protector = $options['protector'];
@@ -63,6 +59,15 @@ class FormSpamProtectionExtension extends Extension {
 			$protector = Config::inst()->get('FormSpamProtectionExtension', 'default_spam_protector');
 			$protector = Injector::inst()->create($protector);
 		}
+		return $protector;
+	}
+
+	/**
+	 * Activates the spam protection module.
+	 *
+	 * @param array $options
+	 */
+	public function enableSpamProtection($options = array()) {
 		
 		// captcha form field name (must be unique)
 		if(isset($options['name'])) {
@@ -79,8 +84,9 @@ class FormSpamProtectionExtension extends Extension {
 		}
 
 		// set custom mapping on this form
+		$protector = self::get_protector($options);
 		if(isset($options['mapping'])) {
-			$this->fieldMapping = $options['mapping'];	
+			$protector->setFieldMapping($options['mapping']);
 		}
 
 		// add the form field
@@ -91,30 +97,5 @@ class FormSpamProtectionExtension extends Extension {
 		}
 	
 		return $this->owner;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasSpamProtectionMapping() {
-		return ($this->fieldMapping);
-	}
-	
-	/**
-	 * @return array
-	 */
-	public function getSpamMappedData() {
-		if($this->fieldMapping) {
-			$result = array();
-			$data = $this->owner->getData();
-
-			foreach($this->fieldMapping as $fieldName => $mappedName) {
-				$result[$mappedName] = (isset($data[$fieldName])) ? $data[$fieldName] : null;
-			}
-
-			return $result;
-		}
-
-		return null;
 	}
 }
