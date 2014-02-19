@@ -25,6 +25,7 @@ implementations. Currently available options are:
 * [Mollom](https://github.com/silverstripe/silverstripe-mollom)
 * [Recaptcha](https://github.com/chillu/silverstripe-recaptcha)
 * [MathSpamProtection](https://github.com/silverstripe/silverstripe-mathspamprotection)
+* [Akismet](https://github.com/tractorcow/silverstripe-akismet)
 
 As a developer you can also provide your own protector by creating a class which
 implements the `SpamProtector` interface. More on that below.
