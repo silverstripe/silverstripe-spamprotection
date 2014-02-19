@@ -64,6 +64,9 @@ class FormSpamProtectionExtensionTest_BazProtector implements SpamProtector, Tes
 	public function getFormField($name = null, $title = null, $value = null) {
 		return new TextField($name, $title, $value);
 	}
+
+	public function setFieldMapping($fieldMapping) {}
+
 }
 
 /**
@@ -76,6 +79,9 @@ class FormSpamProtectionExtensionTest_BarProtector implements SpamProtector, Tes
 	public function getFormField($name = null, $title = null, $value = null) {
 		return new TextField($name, $this->title, $value);
 	}
+
+	public function setFieldMapping($fieldMapping) {}
+
 }
 
 /**
@@ -86,4 +92,7 @@ class FormSpamProtectionExtensionTest_FooProtector implements SpamProtector, Tes
 	public function getFormField($name = null, $title = null, $value = null) {
 		return new TextField($name, 'Foo', $value);
 	}
+
+	public function setFieldMapping($fieldMapping) {}
+
 }
