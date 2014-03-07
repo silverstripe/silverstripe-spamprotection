@@ -72,6 +72,7 @@ Options to configure are:
 
 *`name`* the form field name argument for the Captcha. Defaults to `Catcha`.
 *`title`* title of the Captcha form field. Defaults to `''`
+*`insertBefore`* name of existing field to insert the spam protection field prior to
 *`mapping`* an array mapping of the Form fields to the standardized list of 
 field names. The list of standardized fields to pass to the spam protector are:
 

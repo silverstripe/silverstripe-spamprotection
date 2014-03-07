@@ -93,7 +93,15 @@ class FormSpamProtectionExtension extends Extension {
 		if($field = $protector->getFormField($name, $title)) {
 			$field->setForm($this->owner);
 			
-			$this->owner->Fields()->push($field);
+			// Add before field specified by insertBefore
+			$inserted = false;
+			if(!empty($options['insertBefore'])) {
+				$inserted = $this->owner->Fields()->insertBefore($field, $options['insertBefore']);
+			}
+			if(!$inserted) {
+				// Add field to end if not added already
+				$this->owner->Fields()->push($field);
+			}
 		}
 	
 		return $this->owner;
