@@ -5,6 +5,8 @@
  */
 class FormSpamProtectionExtensionTest extends SapphireTest {
 	
+	protected $usesDatabase = false;
+	
 	public function setUp() {
 		parent::setUp();
 
@@ -54,6 +56,36 @@ class FormSpamProtectionExtensionTest extends SapphireTest {
 
 		$this->assertEquals('Qux', $form->Fields()->fieldByName('Borris')->Title());
 	}
+	
+	public function testInsertBefore() {
+		
+		$form = $this->form->enableSpamProtection(array(
+			'protector' => 'FormSpamProtectionExtensionTest_FooProtector',
+			'insertBefore' => 'URL'
+		));
+		
+		$fields = $form->Fields();
+		$this->assertEquals('Title', $fields[0]->Title());
+		$this->assertEquals('Comment', $fields[1]->Title());
+		$this->assertEquals('Foo', $fields[2]->Title());
+		$this->assertEquals('URL', $fields[3]->Title());
+	}
+	
+	public function testInsertBeforeMissing() {
+		
+		$form = $this->form->enableSpamProtection(array(
+			'protector' => 'FormSpamProtectionExtensionTest_FooProtector',
+			'insertBefore' => 'NotAField'
+		));
+		
+		// field should default to the end instead
+		$fields = $form->Fields();
+		$this->assertEquals('Title', $fields[0]->Title());
+		$this->assertEquals('Comment', $fields[1]->Title());
+		$this->assertEquals('URL', $fields[2]->Title());
+		$this->assertEquals('Foo', $fields[3]->Title());
+	}
+	
 }
 
 /**
