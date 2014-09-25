@@ -71,7 +71,7 @@ if(class_exists('EditableFormField')) {
 
 			// Get protector
 			$protector = FormSpamProtectionExtension::get_protector();
-			if (empty($protector)) return fields;
+			if (!$protector) return $fields;
 			
 			// Each other text field in this group can be assigned a field mapping
 			$mapGroup = FieldGroup::create(_t(
