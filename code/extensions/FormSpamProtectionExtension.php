@@ -56,7 +56,7 @@ class FormSpamProtectionExtension extends Extension {
 		}
 
 		if($protector && class_exists($protector)) {
-			return Injector::inst()->create($protector);	
+			return Injector::inst()->create($protector);
 		} else {
 			return null;
 		}
