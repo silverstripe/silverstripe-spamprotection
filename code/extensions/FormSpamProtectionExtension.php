@@ -85,22 +85,25 @@ class FormSpamProtectionExtension extends Extension {
 
 		// set custom mapping on this form
 		$protector = self::get_protector($options);
+
 		if(isset($options['mapping'])) {
 			$protector->setFieldMapping($options['mapping']);
 		}
 
-		// add the form field
-		if($field = $protector->getFormField($name, $title)) {
-			$field->setForm($this->owner);
-			
-			// Add before field specified by insertBefore
-			$inserted = false;
-			if(!empty($options['insertBefore'])) {
-				$inserted = $this->owner->Fields()->insertBefore($field, $options['insertBefore']);
-			}
-			if(!$inserted) {
-				// Add field to end if not added already
-				$this->owner->Fields()->push($field);
+		if($protector) {
+			// add the form field
+			if($field = $protector->getFormField($name, $title)) {
+				$field->setForm($this->owner);
+				
+				// Add before field specified by insertBefore
+				$inserted = false;
+				if(!empty($options['insertBefore'])) {
+					$inserted = $this->owner->Fields()->insertBefore($field, $options['insertBefore']);
+				}
+				if(!$inserted) {
+					// Add field to end if not added already
+					$this->owner->Fields()->push($field);
+				}
 			}
 		}
 	
