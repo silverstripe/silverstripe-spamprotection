@@ -10,9 +10,9 @@ if(class_exists('EditableFormField')) {
 	
 	class EditableSpamProtectionField extends EditableFormField {
 	
-		static $singular_name = 'Spam Protection Field';
+		private static $singular_name = 'Spam Protection Field';
 	
-		static $plural_name = 'Spam Protection Fields';
+		private static $plural_name = 'Spam Protection Fields';
 		/**
 		 * Fields to include spam detection for
 		 *
