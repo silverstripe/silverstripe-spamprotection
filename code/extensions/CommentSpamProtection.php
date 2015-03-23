@@ -10,6 +10,7 @@ class CommentSpamProtection extends Extension {
 
 	public function alterCommentForm(&$form) {
 		$form->enableSpamProtection(array(
+			'name' => 'IsSpam',
 			'mapping' => array(
 				'Name' => 'authorName',
 				'Email' => 'authorEmail',
