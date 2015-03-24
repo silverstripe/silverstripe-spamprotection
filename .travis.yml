@@ -10,7 +10,7 @@ env:
 matrix:
   include:
     - php: 5.4
-      env: DB=MYSQL CORE_RELEASE=master
+      env: DB=MYSQL CORE_RELEASE=3
 
 before_script:
  - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
@@ -18,4 +18,4 @@ before_script:
  - cd ~/builds/ss
 
 script: 
- - phpunit userforms/tests/
+ - vendor/bin/phpunit spamprotection/tests/

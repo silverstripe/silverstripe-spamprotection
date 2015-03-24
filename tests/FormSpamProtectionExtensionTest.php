@@ -6,6 +6,11 @@
 class FormSpamProtectionExtensionTest extends SapphireTest {
 	
 	protected $usesDatabase = false;
+
+	/**
+	 * @var Form
+	 */
+	protected $form = null;
 	
 	public function setUp() {
 		parent::setUp();
@@ -16,6 +21,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest {
 			new TextField('URL')
 		), new FieldList()
 		);
+		$this->form->disableSecurityToken();
 	}
 
 	public function testEnableSpamProtection() {
@@ -36,14 +42,14 @@ class FormSpamProtectionExtensionTest extends SapphireTest {
 		));
 
 		$this->assertEquals('Bar', $form->Fields()->fieldByName('Captcha')->Title());
+	}
 
-		$protector = new FormSpamProtectionExtensionTest_BarProtector();
-		$protector->title = "Baz";
-
+	public function testEnableSpamProtectionCustomTitle() {
 		$form = $this->form->enableSpamProtection(array(
-			'protector' => $protector
+			'protector' => 'FormSpamProtectionExtensionTest_BarProtector',
+			'title' => 'Baz',
 		));
-
+		
 		$this->assertEquals('Baz', $form->Fields()->fieldByName('Captcha')->Title());
 	}
 
@@ -106,10 +112,9 @@ class FormSpamProtectionExtensionTest_BazProtector implements SpamProtector, Tes
  */
 class FormSpamProtectionExtensionTest_BarProtector implements SpamProtector, TestOnly {
 
-	public $title = 'Bar';
-
 	public function getFormField($name = null, $title = null, $value = null) {
-		return new TextField($name, $this->title, $value);
+		$title = $title ?: 'Bar';
+		return new TextField($name, $title, $value);
 	}
 
 	public function setFieldMapping($fieldMapping) {}
