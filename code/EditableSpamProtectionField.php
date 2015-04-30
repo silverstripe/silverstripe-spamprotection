@@ -73,6 +73,10 @@ if(class_exists('EditableFormField')) {
 			$protector = FormSpamProtectionExtension::get_protector();
 			if (!$protector) return $fields;
 			
+			if ($this->Parent()->Fields() instanceof UnsavedRelationList) {
+				return $fields;
+			}
+			
 			// Each other text field in this group can be assigned a field mapping
 			$mapGroup = FieldGroup::create(_t(
 				'EditableSpamProtectionField.SPAMFIELDMAPPING',
