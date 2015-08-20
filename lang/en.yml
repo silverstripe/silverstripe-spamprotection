@@ -1,6 +1,6 @@
 en:
   EditableSpamProtectionField:
-    SINGULARNAME: 'Spam Protection Field'
     PLURALNAME: 'Spam Protection Fields'
+    SINGULARNAME: 'Spam Protection Field'
     SPAMFIELDMAPPING: 'Spam Field Mapping'
     SPAMFIELDMAPPINGDESCRIPTION: 'Select the form fields that correspond to any relevant spam protection identifiers'

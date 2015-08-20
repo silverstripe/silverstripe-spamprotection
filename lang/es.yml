@@ -1,0 +1,6 @@
+es:
+  EditableSpamProtectionField:
+    SINGULARNAME: 'Campo de protección de spam'
+    PLURALNAME: 'Campos de protección de spam'
+    SPAMFIELDMAPPING: 'Mapeo del campo spam'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Seleccionar los campos del formulario que corresponden a cualquier identificador de protección de spam relevante'
