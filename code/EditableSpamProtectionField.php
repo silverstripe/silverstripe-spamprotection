@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Editable Spam Protecter Field. Used with the User Defined Forms module (if 
+ * Editable Spam Protecter Field. Used with the User Defined Forms module (if
  * installed) to allow the user to have captcha fields with their custom forms
- * 
+ *
  * @package spamprotection
  */
 if(class_exists('EditableFormField')) {
-	
+
 	class EditableSpamProtectionField extends EditableFormField {
-	
+
 		private static $singular_name = 'Spam Protection Field';
-	
+
 		private static $plural_name = 'Spam Protection Fields';
 		/**
 		 * Fields to include spam detection for
@@ -24,7 +24,7 @@ if(class_exists('EditableFormField')) {
 			'EditableTextField',
 			'EditableNumericField'
 		);
-	
+
 		public function getFormField() {
 			// Get protector
 			$protector = FormSpamProtectionExtension::get_protector();
@@ -72,11 +72,11 @@ if(class_exists('EditableFormField')) {
 			// Get protector
 			$protector = FormSpamProtectionExtension::get_protector();
 			if (!$protector) return $fields;
-			
+
 			if ($this->Parent()->Fields() instanceof UnsavedRelationList) {
 				return $fields;
 			}
-			
+
 			// Each other text field in this group can be assigned a field mapping
 			$mapGroup = FieldGroup::create(_t(
 				'EditableSpamProtectionField.SPAMFIELDMAPPING',
@@ -104,10 +104,17 @@ if(class_exists('EditableFormField')) {
 			return $fields;
 		}
 
+		public function validateField($data, $form) {
+			$formField = $this->getFormField();
+			if (!$formField->validate($form->getValidator())) {
+				$form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+			}
+		}
+
 		public function getFieldValidationOptions() {
 			return new FieldList();
 		}
-		
+
 		public function getRequired() {
 			return false;
 		}
@@ -115,7 +122,7 @@ if(class_exists('EditableFormField')) {
 		public function getIcon() {
 			return 'spamprotection/images/' . strtolower($this->class) . '.png';
 		}
-	
+
 		public function showInReports() {
 			return false;
 		}
