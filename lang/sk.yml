@@ -1,0 +1,6 @@
+sk:
+  EditableSpamProtectionField:
+    PLURALNAME: 'Polia ochrany proti spamu'
+    SINGULARNAME: 'Pole ochrany proti spamu'
+    SPAMFIELDMAPPING: 'Mapovanie spamového poľa'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Vyberte polia formulára, ktoré zodpovedajú všetkým príslušným identifikátorom ochrany proti spamu'
