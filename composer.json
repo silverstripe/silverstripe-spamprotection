@@ -20,5 +20,6 @@
 		"branch-alias": {
 			"dev-master": "2.0.x-dev"
 		}
-	}
+	},
+	"license": "BSD-3-Clause"
 }
