@@ -104,10 +104,45 @@ if(class_exists('EditableFormField')) {
 			return $fields;
 		}
 
+		/**
+		 * Using custom validateField method
+		 * as Spam Protection Field implementations may have their own error messages
+		 * and may not be based on the field being required, e.g. Honeypot Field
+		 * 
+		 * @param array $data
+		 * @param Form $form
+		 * @return void
+		 */
 		public function validateField($data, $form) {
 			$formField = $this->getFormField();
-			if (!$formField->validate($form->getValidator())) {
-				$form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+			
+			if(isset($data[$this->Name])) {
+				$formField->setValue($data[$this->Name]);
+			}
+
+			$validator = $form->getValidator();
+			if (!$formField->validate($validator)) {
+				$errors = $validator->getErrors();
+				$foundError = false;
+
+				// field validate implementation may not add error to validator
+				if(count($errors) > 0) {
+					// check if error already added from fields' validate method
+					foreach ($errors as $error) {
+						if($error['fieldName'] == $this->Name) {
+							$foundError = $error;
+							break;
+						}
+					}
+				}
+
+				if($foundError !== false) {
+					// use error messaging already set from validate method
+					$form->addErrorMessage($this->Name, $foundError['message'], $foundError['messageType'], false);
+				} else {
+					// fallback to custom message set in CMS or default message if none set
+					$form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+				}
 			}
 		}
 
