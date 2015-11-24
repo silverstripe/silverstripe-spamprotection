@@ -106,8 +106,12 @@ if(class_exists('EditableFormField')) {
 
 		public function validateField($data, $form) {
 			$formField = $this->getFormField();
-			if (!$formField->validate($form->getValidator())) {
-				$form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+			$validator = $form->getValidator();
+			if (!$formField->validate($validator)) {
+				foreach($validator->getErrors() as $error) {
+					$this->owner->CustomErrorMessage = $error['message'];
+					$form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+				}
 			}
 		}
 
