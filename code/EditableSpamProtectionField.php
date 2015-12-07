@@ -114,7 +114,14 @@ if (class_exists('EditableFormField')) {
         {
             $formField = $this->getFormField();
             if (!$formField->validate($form->getValidator())) {
-                $form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+                $errorArray = $form->getValidator()->getErrors();
+                
+                $map = array_map(function ($element) {
+                    return $element['fieldName'];
+                }, $errorArray);
+
+                $errorText = $errorArray[array_search($this->Name, $map)]['message'];
+                $form->addErrorMessage($this->Name, $errorText, 'error', false);
             }
         }
 
