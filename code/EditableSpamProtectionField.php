@@ -112,9 +112,18 @@ if (class_exists('EditableFormField')) {
 
         public function validateField($data, $form)
         {
-            $formField = $this->getFormField();
+            // In case you dont have this function in your php - primitive version
+            if (!function_exists("array_column")) {
+                function array_column($array, $column_name) {
+                    return array_map(function ($element) use ($column_name) {
+                        return $element[$column_name];
+                    }, $array);
+                }
+            }
             if (!$formField->validate($form->getValidator())) {
-                $form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+                $errorArray = $form->getValidator()->getErrors();
+                $errorText = $errorArray[array_search($this->Name, array_column($errorArray, 'fieldName'))]['message'];
+                $form->addErrorMessage($this->Name, $errorText, 'error', false);
             }
         }
 
