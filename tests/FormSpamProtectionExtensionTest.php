@@ -61,10 +61,13 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         $form = $this->form->enableSpamProtection(array(
             'protector' => 'FormSpamProtectionExtensionTest_BazProtector',
             'title' => 'Qux',
-            'name' => 'Borris'
+            'name' => 'Borris',
+            'righttitle' => 'Lipsum'
         ));
 
-        $this->assertEquals('Qux', $form->Fields()->fieldByName('Borris')->Title());
+        $formfield = $form->Fields()->fieldByName('Borris');
+        $this->assertEquals('Qux', $formfield->Title());
+        $this->assertEquals('Lipsum', $formfield->RightTitle());
     }
     
     public function testInsertBefore()
@@ -102,9 +105,20 @@ class FormSpamProtectionExtensionTest extends SapphireTest
  */
 class FormSpamProtectionExtensionTest_BazProtector implements SpamProtector, TestOnly
 {
+    protected $options = array();
+
+    public function __construct($options = array())
+    {
+        $this->options = $options;
+    }
+
     public function getFormField($name = null, $title = null, $value = null)
     {
-        return new TextField($name, $title, $value);
+        $field = new TextField($name, $title, $value);
+        if(isset($this->options['righttitle'])) {
+            $field->setRightTitle($this->options['righttitle']);
+        }
+        return $field;
     }
 
     public function setFieldMapping($fieldMapping)
@@ -117,6 +131,10 @@ class FormSpamProtectionExtensionTest_BazProtector implements SpamProtector, Tes
  */
 class FormSpamProtectionExtensionTest_BarProtector implements SpamProtector, TestOnly
 {
+    public function __construct($options = array())
+    {
+    }
+
     public function getFormField($name = null, $title = null, $value = null)
     {
         $title = $title ?: 'Bar';
@@ -133,6 +151,10 @@ class FormSpamProtectionExtensionTest_BarProtector implements SpamProtector, Tes
  */
 class FormSpamProtectionExtensionTest_FooProtector implements SpamProtector, TestOnly
 {
+    public function __construct($options = array())
+    {
+    }
+
     public function getFormField($name = null, $title = null, $value = null)
     {
         return new TextField($name, 'Foo', $value);
