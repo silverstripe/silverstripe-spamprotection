@@ -24,8 +24,17 @@ if (class_exists('EditableFormField')) {
             'EditableNumericField'
         );
 
+        /**
+         * @var FormField
+         */
+        protected $formField = null;
+
         public function getFormField()
         {
+            if ($this->formField) {
+                return $this->formField;
+            }
+
             // Get protector
             $protector = FormSpamProtectionExtension::get_protector();
             if (!$protector) {
@@ -43,6 +52,17 @@ if (class_exists('EditableFormField')) {
 
             // Generate field
             return $protector->getFormField($this->Name, $this->Title, null);
+        }
+
+        /**
+         * @param FormField $field
+         * @return self
+         */
+        public function setFormField(FormField $field)
+        {
+            $this->formField = $field;
+
+            return $this;
         }
 
         /**
