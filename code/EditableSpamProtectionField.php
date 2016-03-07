@@ -142,7 +142,8 @@ if (class_exists('EditableFormField')) {
         public function validateField($data, $form) 
         {
             $formField = $this->getFormField();
-            
+            $formField->setForm($form);
+
             if (isset($data[$this->Name])) {
                 $formField->setValue($data[$this->Name]);
             }
