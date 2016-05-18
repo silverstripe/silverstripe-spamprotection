@@ -4,11 +4,16 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.4]
+
+* Set Form for formField when validating
+* Update translations.
+
 ## [2.0.3]
 
 * Fix validateField method on EditableSpamProtectionField to use correct error message
 * Converted to PSR-2
-* Added standard Scrutinizer config	
+* Added standard Scrutinizer config
 * Added standard code of conduct
 * Added standard editor config
 * Added standard Travis config
