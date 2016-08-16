@@ -1,0 +1,6 @@
+eo:
+  EditableSpamProtectionField:
+    PLURALNAME: 'Spamprotektaj kampoj'
+    SINGULARNAME: 'Spamprotekta kampo'
+    SPAMFIELDMAPPING: 'Spamkampa mapigo'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Elektu la kampojn kiuj rilatas al eventualaj rilataj spamprotektaj identigiloj'

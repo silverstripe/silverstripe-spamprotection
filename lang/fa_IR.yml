@@ -1,0 +1,6 @@
+fa_IR:
+  EditableSpamProtectionField:
+    PLURALNAME: 'فیلدهای محافظت از هرزنوشته'
+    SINGULARNAME: 'فیلد محافظت از هرزنوشته'
+    SPAMFIELDMAPPING: 'نقشه‌برداری فیلد هرزنوشته'
+    SPAMFIELDMAPPINGDESCRIPTION: 'فیلدهای فرم را مطابق با هریک از شناسایی‌کننده‌های محافظت از هرزنوشته انتخاب کنید'

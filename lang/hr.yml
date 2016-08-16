@@ -1,0 +1,6 @@
+hr:
+  EditableSpamProtectionField:
+    PLURALNAME: 'Polja Spam zaštite'
+    SINGULARNAME: 'Polje Spam zaštite'
+    SPAMFIELDMAPPING: 'Mapiranje polja Spama'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Odaberite polja forme koji odgovaraju relevantnim identifikatorima za zaštitu od spama'

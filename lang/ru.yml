@@ -1,0 +1,5 @@
+ru:
+  EditableSpamProtectionField:
+    PLURALNAME: 'Поля защиты от спама'
+    SINGULARNAME: 'Поле защиты от спама'
+    SPAMFIELDMAPPING: 'Привязка полей для защиты от спама'
