@@ -15,6 +15,12 @@
 interface SpamProtector
 {
     /**
+     * SpamProtector constructor.
+     * @param array $options List of spam protection options
+     */
+    public function __construct($options = array());
+
+    /**
      * Return the {@link FormField} associated with this protector.
      *
      * Most spam methods will simply return a piece of HTML to be injected at 

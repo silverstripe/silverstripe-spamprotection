@@ -67,25 +67,26 @@ implementation client side or server side.
 
 Options to configure are:
 
-*`protector`* a class name string or class instance which implements 
-`SpamProtector`. Defaults to your 
+* `protector`: a class name string or class instance which implements  `SpamProtector`. Defaults to your 
 `FormSpamProtectionExtension.default_spam_protector` value.
+* `name`: The form field name argument for the Captcha. Defaults to `Catcha`.
+* `title`: title of the Captcha form field. Defaults to `''`
+* `insertBefore`: name of existing field to insert the spam protection field prior to
+* `mapping`: an array mapping of the Form fields to the standardized list of field names.
+The list of standardized fields to pass to the spam protector are:
+  * title
+  * body
+  * contextUrl
+  * contextTitle
+  * authorName
+  * authorMail
+  * authorUrl
+  * authorIp
+  * authorId
 
-*`name`* the form field name argument for the Captcha. Defaults to `Catcha`.
-*`title`* title of the Captcha form field. Defaults to `''`
-*`insertBefore`* name of existing field to insert the spam protection field prior to
-*`mapping`* an array mapping of the Form fields to the standardized list of 
-field names. The list of standardized fields to pass to the spam protector are:
-
-		title
-		body
-		contextUrl
-		contextTitle
-		authorName
-		authorMail
-		authorUrl
-		authorIp
-		authorId
+Additional options may be specified, which may be used to activate implementation specific
+features for the chosen spam protector. All of these options will be passed to the
+protector constructor (see below).
 
 ## Defining your own `SpamProtector`
 
@@ -94,16 +95,32 @@ be set as the spam protector. The `getFormField()` method returns the
 `FormField` to be inserted into the `Form`. The `FormField` returned should be
 in charge of the validation process.
 
-	<?php
-
-	class CustomSpamProtector implements SpamProtector {
-
-		public function getFormField($name = null, $title = null, $value = null) {
-			// CaptchaField is a imagined class which has some functionality.
-			// See silverstripe-mollom module for an example.
-			return new CaptchaField($name, $title, $value);
-		}
-	}
+    <?php
+    
+    class CustomSpamProtector implements SpamProtector
+    {
+        /**
+         * List of options passed to enableSpamProtection() used to generate this protector
+         * @var array
+         */
+        protected $options = array();
+    
+        public function __construct($options = array())
+        {
+            $this->options = $options;
+        }
+    
+        public function getFormField($name = null, $title = null, $value = null)
+        {
+            // CaptchaField is a imagined class which has some functionality.
+            // See silverstripe-mollom module for an example.
+            return new CaptchaField($name, $title, $value);
+        }
+        
+        public function setFieldMapping($fieldMapping) {
+            // No-op
+        }
+    }
 
 
 ## Using Spam Protection with User Forms
