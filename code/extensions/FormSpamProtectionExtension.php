@@ -1,4 +1,9 @@
 <?php
+namespace SilverStripe\Spamprotection;
+
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Extension;
+use SilverStripe\Core\Injector\Injector;
 
 /**
  * An extension to the {@link Form} class which provides the method
@@ -76,6 +81,7 @@ class FormSpamProtectionExtension extends Extension
      * Activates the spam protection module.
      *
      * @param array $options
+     * @return Object
      */
     public function enableSpamProtection($options = array())
     {

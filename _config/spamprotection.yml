@@ -1,6 +1,6 @@
 ---
 name: spamprotection
 ---
-Form:
+SilverStripe\Forms\Form:
   extensions:
-    - FormSpamProtectionExtension
+    - SilverStripe\Spamprotection\FormSpamProtectionExtension

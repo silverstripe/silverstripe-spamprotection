@@ -11,15 +11,18 @@
         "email": "will@fullscreen.io"
     }],
     "require": {
-        "silverstripe/framework": "~3.1"
+        "silverstripe/framework": "^4@dev"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "~3.7@stable"
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.0"
     },
     "extra": {
         "branch-alias": {
             "dev-master": "3.0.x-dev"
         }
     },
-    "license": "BSD-3-Clause"
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

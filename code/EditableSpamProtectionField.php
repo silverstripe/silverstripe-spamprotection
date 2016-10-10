@@ -1,4 +1,5 @@
 <?php
+namespace SilverStripe\Spamprotection;
 
 /**
  * Editable Spam Protecter Field. Used with the User Defined Forms module (if

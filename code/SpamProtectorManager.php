@@ -1,4 +1,7 @@
 <?php
+namespace SilverStripe\Spamprotection;
+
+use SilverStripe\Dev\Deprecation;
 
 /**
  * @package spamprotection
@@ -18,7 +21,7 @@ class SpamProtectorManager
             'Use the new config system. FormSpamProtectorExtension.default_spam_protector'
         );
 
-        self::$spam_protector = $protector;
+        static::$spam_protector = $protector;
     }
 
     public static function get_spam_protector()
@@ -29,7 +32,7 @@ class SpamProtectorManager
             'Use the new config system. FormSpamProtectorExtension.default_spam_protector'
         );
 
-        return self::$spam_protector;
+        return static::$spam_protector;
     }
     
     public static function update_form($form, $before = null, $fieldsToSpamServiceMapping = array(), $title = null, $rightTitle = null)
