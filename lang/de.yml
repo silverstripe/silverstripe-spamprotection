@@ -1,6 +1,6 @@
 de:
   EditableSpamProtectionField:
-    PLURALNAME: 'Spamschutzfelder'
-    SINGULARNAME: 'Spamschutzfeld'
+    PLURALNAME: Spamschutzfelder
+    SINGULARNAME: Spamschutzfeld
     SPAMFIELDMAPPING: 'Spamschutzfeld Zuordnung'
     SPAMFIELDMAPPINGDESCRIPTION: 'Wähle die Formularfelder, die mit Spamschutz verbunden sind'
