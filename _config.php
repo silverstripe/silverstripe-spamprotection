@@ -10,7 +10,7 @@
  */
 
 /**
- * If the comments module is installed then add the spam protection module 
+ * If the comments module is installed then add the spam protection module
  * to the comments form via this extension.
  *
  * Place this line in your mysite/_config.php
