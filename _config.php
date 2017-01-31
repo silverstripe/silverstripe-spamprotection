@@ -9,7 +9,7 @@
  * @package spamprotection
  */
 
-if(class_exists('Comment')) {
+if(class_exists('CommentingController')) {
 	/**
 	 * If the comments module is installed then add the spam protection module 
 	 * to the comments form via this extension
