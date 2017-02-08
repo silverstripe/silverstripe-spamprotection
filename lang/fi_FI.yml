@@ -1,0 +1,6 @@
+fi_FI:
+  EditableSpamProtectionField:
+    PLURALNAME: 'Roskapostisuotimen kentät'
+    SINGULARNAME: 'Roskapostisuotimen kenttä'
+    SPAMFIELDMAPPING: 'Roskapostikentän kuvaus'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Valitse lomakekentät, jotka vastaavat mitä tahansa oleellista roskapostisuotimen tunnistetta'
