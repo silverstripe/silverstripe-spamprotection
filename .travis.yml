@@ -26,10 +26,8 @@ matrix:
 before_script:
   - composer self-update || true
   - git clone git://github.com/silverstripe/silverstripe-travis-support.git ~/travis-support
-  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
+  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss --require silverstripe/userforms
   - cd ~/builds/ss
-  - composer install
-  - composer require silverstripe/userforms
 
 script:
   - vendor/bin/phpunit spamprotection/tests
