@@ -81,6 +81,25 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formFieldMock->validateField(array('MyField' => null), $formMock);
     }
 
+    public function testSpamConfigurationShowsInCms()
+    {
+        $field = $this->getEditableFormFieldMock();
+        $fields = $field->getCMSFields();
+
+        $this->assertInstanceOf('FieldGroup', $fields->fieldByName('Root.Main.SpamFieldMapping'));
+    }
+
+    public function testSpamMapSettingsAreSerialised()
+    {
+        $field = $this->getEditableFormFieldMock();
+        $field->SpamFieldSettings = json_encode(array('foo' => 'bar', 'bar' => 'baz'));
+        $field->write();
+
+        $this->assertJson($field->SpamFieldSettings);
+        $this->assertSame('bar', $field->spamMapValue('foo'));
+        $this->assertSame('baz', $field->spamMapValue('bar'));
+    }
+
     protected function getFormMock()
     {
         $formMock = $this->getMockBuilder('Form', array('addErrorMessage'))
