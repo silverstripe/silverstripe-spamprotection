@@ -134,12 +134,12 @@ if (class_exists('EditableFormField')) {
          * Using custom validateField method
          * as Spam Protection Field implementations may have their own error messages
          * and may not be based on the field being required, e.g. Honeypot Field
-         * 
+         *
          * @param array $data
          * @param Form $form
          * @return void
          */
-        public function validateField($data, $form) 
+        public function validateField($data, $form)
         {
             $formField = $this->getFormField();
             $formField->setForm($form);

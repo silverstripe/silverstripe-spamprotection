@@ -1,7 +1,7 @@
 <?php
 
 /**
- * An extension to the {@link Form} class which provides the method 
+ * An extension to the {@link Form} class which provides the method
  * {@link enableSpamProtection()} helper.
  *
  * @package spamprotection
@@ -22,7 +22,7 @@ class FormSpamProtectionExtension extends Extension
     /**
      * @config
      *
-     * The {@link enableSpamProtection} method will define which of the form 
+     * The {@link enableSpamProtection} method will define which of the form
      * values correlates to this form mapped fields list. Totally custom forms
      * and subclassed SpamProtector instances are define their own mapping
      *
