@@ -23,6 +23,9 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         ), new FieldList()
         );
         $this->form->disableSecurityToken();
+        
+        //for the tests, ignore any field_name value set in config
+        Config::inst()->remove('FormSpamProtectionExtension', 'field_name');
     }
 
     public function testEnableSpamProtection()
@@ -65,6 +68,24 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         ));
 
         $this->assertEquals('Qux', $form->Fields()->fieldByName('Borris')->Title());
+    }
+    
+    public function testConfigurableName()
+    {
+        $field_name = "test_configurable_name";
+        Config::inst()->update(
+            'FormSpamProtectionExtension', 'default_spam_protector',
+            'FormSpamProtectionExtensionTest_FooProtector'
+        );
+        Config::inst()->update(
+            'FormSpamProtectionExtension', 'field_name',
+            $field_name
+        );
+        $form = $this->form->enableSpamProtection();
+        // remove for subsequent tests
+        Config::inst()->remove('FormSpamProtectionExtension', 'field_name');
+        // field should take up configured name
+        $this->assertEquals('Foo', $form->Fields()->fieldByName($field_name)->Title());
     }
     
     public function testInsertBefore()
