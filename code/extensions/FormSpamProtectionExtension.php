@@ -42,6 +42,15 @@ class FormSpamProtectionExtension extends Extension
     );
     
     /**
+     * @config
+     *
+     * The field name to use for the {@link SpamProtector} {@link FormField}
+     *
+     * @var string $spam_protector
+     */
+    private static $field_name = "Captcha";
+    
+    /**
      * Instantiate a SpamProtector instance
      *
      * @param array $options Configuration options
@@ -75,7 +84,7 @@ class FormSpamProtectionExtension extends Extension
         if (isset($options['name'])) {
             $name = $options['name'];
         } else {
-            $name = 'Captcha';
+            $name = Config::inst()->get('FormSpamProtectionExtension', 'field_name');
         }
 
         // captcha field title
