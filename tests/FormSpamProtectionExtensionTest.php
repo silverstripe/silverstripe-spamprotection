@@ -23,9 +23,6 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         ), new FieldList()
         );
         $this->form->disableSecurityToken();
-        
-        //for the tests, ignore any field_name value set in config
-        Config::inst()->remove('FormSpamProtectionExtension', 'field_name');
     }
 
     public function testEnableSpamProtection()
