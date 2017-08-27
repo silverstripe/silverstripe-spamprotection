@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Apply the spam protection to the comments module if it is installed.

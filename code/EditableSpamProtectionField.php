@@ -24,6 +24,10 @@ if (class_exists('EditableFormField')) {
             'EditableNumericField'
         );
 
+        private static $db = array(
+            'SpamFieldSettings' => 'Text'
+        );
+
         /**
          * @var FormField
          */
@@ -45,7 +49,7 @@ if (class_exists('EditableFormField')) {
             $fieldMapping = array();
             foreach ($this->getCandidateFields() as $otherField) {
                 $mapSetting = "Map-{$otherField->Name}";
-                $spamField = $this->getSetting($mapSetting);
+                $spamField = $this->spamMapValue($mapSetting);
                 $fieldMapping[$otherField->Name] = $spamField;
             }
             $protector->setFieldMapping($fieldMapping);
@@ -89,9 +93,47 @@ if (class_exists('EditableFormField')) {
                 ->exclude('Title', ''); // Ignore this field and those without titles
         }
 
+        /**
+         * This method is in place for userforms 2.x
+         *
+         * @deprecated 3.0 Please use {@link getCMSFields()} instead
+         */
         public function getFieldConfiguration()
         {
-            $fields = parent::getFieldConfiguration();
+            return $this->getCMSFields();
+        }
+
+        /**
+         * Write the spam field mapping values to a serialised DB field
+         *
+         * {@inheritDoc}
+         */
+        public function onBeforeWrite()
+        {
+            $fieldMap = Convert::json2array($this->SpamFieldSettings);
+            if (empty($fieldMap)) {
+                $fieldMap = array();
+            }
+
+            foreach ($this->record as $key => $value) {
+                if (substr($key, 0, 8) === 'spammap-') {
+                    $fieldMap[substr($key, 8)] = $value;
+                }
+            }
+            $this->setField('SpamFieldSettings', Convert::raw2json($fieldMap));
+
+            return parent::onBeforeWrite();
+        }
+
+        /**
+         * Used in userforms 3.x and above
+         *
+         * {@inheritDoc}
+         */
+        public function getCMSFields()
+        {
+            /** @var FieldList $fields */
+            $fields = parent::getCMSFields();
 
             // Get protector
             $protector = FormSpamProtectionExtension::get_protector();
@@ -104,13 +146,13 @@ if (class_exists('EditableFormField')) {
             }
 
             // Each other text field in this group can be assigned a field mapping
-            $mapGroup = FieldGroup::create(_t(
-                'EditableSpamProtectionField.SPAMFIELDMAPPING',
-                'Spam Field Mapping'
-            ))->setDescription(_t(
-                'EditableSpamProtectionField.SPAMFIELDMAPPINGDESCRIPTION',
-                'Select the form fields that correspond to any relevant spam protection identifiers'
-            ));
+            $mapGroup = FieldGroup::create()
+                ->setTitle(_t('EditableSpamProtectionField.SPAMFIELDMAPPING', 'Spam Field Mapping'))
+                ->setName('SpamFieldMapping')
+                ->setDescription(_t(
+                    'EditableSpamProtectionField.SPAMFIELDMAPPINGDESCRIPTION',
+                    'Select the form fields that correspond to any relevant spam protection identifiers'
+                ));
 
             // Generate field specific settings
             $mappableFields = Config::inst()->get('FormSpamProtectionExtension', 'mappable_fields');
@@ -118,28 +160,47 @@ if (class_exists('EditableFormField')) {
             foreach ($this->getCandidateFields() as $otherField) {
                 $mapSetting = "Map-{$otherField->Name}";
                 $fieldOption = DropdownField::create(
-                    $this->getSettingName($mapSetting),
+                    'spammap-' . $mapSetting,
                     $otherField->Title,
                     $mappableFieldsMerged,
-                    $this->getSetting($mapSetting)
+                    $this->spamMapValue($mapSetting)
                 )->setEmptyString('');
                 $mapGroup->push($fieldOption);
             }
-            $fields->insertBefore($mapGroup, $this->getSettingName('ExtraClass'));
+            $fields->addFieldToTab('Root.Main', $mapGroup);
 
             return $fields;
+        }
+
+        /**
+         * Try to retrieve a value for the given spam field map name from the serialised data
+         *
+         * @param string $mapSetting
+         * @return string
+         */
+        public function spamMapValue($mapSetting)
+        {
+            $map = Convert::json2array($this->SpamFieldSettings);
+            if (empty($map)) {
+                $map = array();
+            }
+
+            if (array_key_exists($mapSetting, $map)) {
+                return $map[$mapSetting];
+            }
+            return '';
         }
 
         /**
          * Using custom validateField method
          * as Spam Protection Field implementations may have their own error messages
          * and may not be based on the field being required, e.g. Honeypot Field
-         * 
+         *
          * @param array $data
          * @param Form $form
          * @return void
          */
-        public function validateField($data, $form) 
+        public function validateField($data, $form)
         {
             $formField = $this->getFormField();
             $formField->setForm($form);
