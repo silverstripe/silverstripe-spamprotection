@@ -1,9 +1,12 @@
 <?php
 
-/**
- * @package spamprotection
- */
-class FormSpamProtectionExtensionTest_FooProtector implements SpamProtector, TestOnly
+namespace SilverStripe\SpamProtection\Tests\Stub;
+
+use SilverStripe\Dev\TestOnly;
+use SilverStripe\Forms\TextField;
+use SilverStripe\SpamProtection\SpamProtector;
+
+class Protector implements SpamProtector, TestOnly
 {
     public function getFormField($name = null, $title = null, $value = null)
     {

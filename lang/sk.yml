@@ -1,5 +1,5 @@
 sk:
-  EditableSpamProtectionField:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Polia ochrany proti spamu'
     SINGULARNAME: 'Pole ochrany proti spamu'
     SPAMFIELDMAPPING: 'Mapovanie spamového poľa'

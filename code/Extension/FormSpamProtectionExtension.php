@@ -1,5 +1,6 @@
 <?php
-namespace SilverStripe\Spamprotection;
+
+namespace SilverStripe\SpamProtection\Extension;
 
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Extension;
@@ -45,7 +46,7 @@ class FormSpamProtectionExtension extends Extension
         'authorIp',
         'authorId'
     );
-    
+
     /**
      * @config
      *
@@ -54,12 +55,12 @@ class FormSpamProtectionExtension extends Extension
      * @var string $spam_protector
      */
     private static $field_name = "Captcha";
-    
+
     /**
      * Instantiate a SpamProtector instance
      *
      * @param array $options Configuration options
-     * @return SpamProtector
+     * @return SpamProtector|null
      */
     public static function get_protector($options = null)
     {
@@ -67,7 +68,7 @@ class FormSpamProtectionExtension extends Extension
         if (isset($options['protector'])) {
             $protector = $options['protector'];
         } else {
-            $protector = Config::inst()->get('FormSpamProtectionExtension', 'default_spam_protector');
+            $protector = Config::inst()->get(self::class, 'default_spam_protector');
         }
 
         if ($protector && class_exists($protector)) {
@@ -85,12 +86,12 @@ class FormSpamProtectionExtension extends Extension
      */
     public function enableSpamProtection($options = array())
     {
-        
+
         // captcha form field name (must be unique)
         if (isset($options['name'])) {
             $name = $options['name'];
         } else {
-            $name = Config::inst()->get('FormSpamProtectionExtension', 'field_name');
+            $name = Config::inst()->get(self::class, 'field_name');
         }
 
         // captcha field title
@@ -111,7 +112,7 @@ class FormSpamProtectionExtension extends Extension
             // add the form field
             if ($field = $protector->getFormField($name, $title)) {
                 $field->setForm($this->owner);
-                
+
                 // Add before field specified by insertBefore
                 $inserted = false;
                 if (!empty($options['insertBefore'])) {
@@ -123,7 +124,7 @@ class FormSpamProtectionExtension extends Extension
                 }
             }
         }
-    
+
         return $this->owner;
     }
 }

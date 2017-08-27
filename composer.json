@@ -22,7 +22,13 @@
             "dev-master": "3.0.x-dev"
         }
     },
-    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-4": {
+            "SilverStripe\\SpamProtection\\": "code/",
+            "SilverStripe\\SpamProtection\\Tests\\": "tests/"
+        }
+    },
+	"license": "BSD-3-Clause",
     "minimum-stability": "dev",
     "prefer-stable": true
 }

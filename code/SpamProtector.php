@@ -1,5 +1,6 @@
 <?php
-namespace SilverStripe\Spamprotection;
+
+namespace SilverStripe\SpamProtection;
 
 use SilverStripe\Forms\FormField;
 

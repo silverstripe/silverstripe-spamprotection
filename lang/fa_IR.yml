@@ -1,5 +1,5 @@
 fa_IR:
-  EditableSpamProtectionField:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'فیلدهای محافظت از هرزنوشته'
     SINGULARNAME: 'فیلد محافظت از هرزنوشته'
     SPAMFIELDMAPPING: 'نقشه‌برداری فیلد هرزنوشته'

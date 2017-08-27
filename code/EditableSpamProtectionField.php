@@ -1,5 +1,18 @@
 <?php
-namespace SilverStripe\Spamprotection;
+
+namespace SilverStripe\SpamProtection;
+
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldGroup;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
+use SilverStripe\ORM\UnsavedRelationList;
+
+// @todo
+use EditableEmailField;
+use EditableFormField;
+use EditableNumericField;
+use EditableTextField;
 
 /**
  * Editable Spam Protecter Field. Used with the User Defined Forms module (if
@@ -7,12 +20,16 @@ namespace SilverStripe\Spamprotection;
  *
  * @package spamprotection
  */
+// @todo update namespaced for userforms when it is 4.0 compatible
 if (class_exists('EditableFormField')) {
     class EditableSpamProtectionField extends EditableFormField
     {
         private static $singular_name = 'Spam Protection Field';
 
         private static $plural_name = 'Spam Protection Fields';
+
+        private static $table_name = 'EditableSpamProtectionField';
+
         /**
          * Fields to include spam detection for
          *
@@ -20,9 +37,9 @@ if (class_exists('EditableFormField')) {
          * @config
          */
         private static $check_fields = array(
-            'EditableEmailField',
-            'EditableTextField',
-            'EditableNumericField'
+            EditableEmailField::class,
+            EditableTextField::class,
+            EditableNumericField::class
         );
 
         private static $db = array(
@@ -148,15 +165,15 @@ if (class_exists('EditableFormField')) {
 
             // Each other text field in this group can be assigned a field mapping
             $mapGroup = FieldGroup::create()
-                ->setTitle(_t('EditableSpamProtectionField.SPAMFIELDMAPPING', 'Spam Field Mapping'))
+                ->setTitle(_t(__CLASS__.'.SPAMFIELDMAPPING', 'Spam Field Mapping'))
                 ->setName('SpamFieldMapping')
                 ->setDescription(_t(
-                    'EditableSpamProtectionField.SPAMFIELDMAPPINGDESCRIPTION',
+                    __CLASS__.'.SPAMFIELDMAPPINGDESCRIPTION',
                     'Select the form fields that correspond to any relevant spam protection identifiers'
                 ));
 
             // Generate field specific settings
-            $mappableFields = Config::inst()->get('FormSpamProtectionExtension', 'mappable_fields');
+            $mappableFields = Config::inst()->get(FormSpamProtectionExtension::class, 'mappable_fields');
             $mappableFieldsMerged = array_combine($mappableFields, $mappableFields);
             foreach ($this->getCandidateFields() as $otherField) {
                 $mapSetting = "Map-{$otherField->Name}";
@@ -228,10 +245,10 @@ if (class_exists('EditableFormField')) {
 
                 if ($foundError !== false) {
                     // use error messaging already set from validate method
-                    $form->addErrorMessage($this->Name, $foundError['message'], $foundError['messageType'], false);
+                    $form->sessionMessage($foundError['message'], $foundError['messageType']);
                 } else {
                     // fallback to custom message set in CMS or default message if none set
-                    $form->addErrorMessage($this->Name, $this->getErrorMessage()->HTML(), 'error', false);
+                    $form->sessionError($this->getErrorMessage()->HTML());
                 }
             }
         }

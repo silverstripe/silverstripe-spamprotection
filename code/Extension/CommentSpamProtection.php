@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripe\Spamprotection;
+namespace SilverStripe\SpamProtection\Extension;
 
 use SilverStripe\Core\Extension;
 

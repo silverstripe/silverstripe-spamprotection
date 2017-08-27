@@ -13,7 +13,7 @@
 
 ## Requirements
 
-SilverStripe 3.0.0 or greater
+SilverStripe 4.0 or greater
 
 ## Documentation
 
