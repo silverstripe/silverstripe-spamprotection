@@ -22,6 +22,10 @@
     "require-dev": {
         "phpunit/PHPUnit": "~3.7@stable"
     },
-    "extra": [],
+    "extra": {
+        "branch-alias": {
+            "2.x-dev": "2.1.x-dev"
+        }
+    },
     "license": "BSD-3-Clause"
 }
