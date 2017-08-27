@@ -39,17 +39,21 @@ spam protection hooks with that protector.
 
 *mysite/_config/spamprotection.yml*
 
-	---
-	name: spamprotection
-	---
-	FormSpamProtectionExtension:
-	  default_spam_protector: MollomSpamProtector
+```yaml
+---
+name: spamprotection
+---
+SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension:
+  default_spam_protector: MollomSpamProtector
+```
 
 To add spam protection to your form instance call `enableSpamProtection`.
 
-	// your existing form code
-	$form = new Form( .. );
-	$form->enableSpamProtection();
+```php
+// your existing form code
+$form = new Form(/* .. */);
+$form->enableSpamProtection();
+```
 
 The logic to perform the actual spam validation is controlled by each of the
 individual `SpamProtector` implementation since they each require a different
@@ -59,10 +63,12 @@ implementation client side or server side.
 
 `enableSpamProtection` takes a hash of optional configuration values.
 
-	$form->enableSpamProtection(array(
-		'protector' => 'MathSpamProtector',
-		'name' => 'Captcha'
-	));
+```php
+$form->enableSpamProtection(array(
+    'protector' => MathSpamProtector::class,
+    'name' => 'Captcha'
+));
+```
 
 Options to configure are:
 
@@ -76,15 +82,17 @@ Options to configure are:
 *`mapping`* an array mapping of the Form fields to the standardized list of
 field names. The list of standardized fields to pass to the spam protector are:
 
-		title
-		body
-		contextUrl
-		contextTitle
-		authorName
-		authorMail
-		authorUrl
-		authorIp
-		authorId
+```
+title
+body
+contextUrl
+contextTitle
+authorName
+authorMail
+authorUrl
+authorIp
+authorId
+```
 
 ## Defining your own `SpamProtector`
 
@@ -93,22 +101,26 @@ be set as the spam protector. The `getFormField()` method returns the
 `FormField` to be inserted into the `Form`. The `FormField` returned should be
 in charge of the validation process.
 
-	<?php
+<?php
 
-	class CustomSpamProtector implements SpamProtector {
+use CaptchaField;
+use SilverStripe\SpamProtection\SpamProtector;
 
-		public function getFormField($name = null, $title = null, $value = null) {
-			// CaptchaField is a imagined class which has some functionality.
-			// See silverstripe-mollom module for an example.
-			return new CaptchaField($name, $title, $value);
-		}
+class CustomSpamProtector implements SpamProtector
+{
+    public function getFormField($name = null, $title = null, $value = null)
+    {
+        // CaptchaField is an imagined class which has some functionality.
+        // See silverstripe-mollom module for an example.
+        return new CaptchaField($name, $title, $value);
 	}
-
+}
+```
 
 ## Using Spam Protection with User Forms
 
-This module provides an EditableSpamProtectionField wrapper which you can add
-to your UserForm instances. After installing this module and running /dev/build
+This module provides an `EditableSpamProtectionField` wrapper which you can add
+to your UserForm instances. After installing this module and running `/dev/build`
 to rebuild the database, your Form Builder interface will have an option for
 `Spam Protection Field`. The type of spam protection used will be based on your
 currently selected SpamProtector instance.
@@ -119,8 +131,13 @@ Spam protection is useful to provide but in some cases we do not want to require
 the developer to use spam protection. In that case, modules can provide the
 following pattern
 
-	$form = new Form(..);
+```php
+use SilverStripe\Forms\Form;
+use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
 
-	if($form->hasExtension('FormSpamProtectionExtension')) {
-		$form->enableSpamProtection();
-	}
+$form = new Form(/* .. */);
+
+if ($form->hasExtension(FormSpamProtectionExtension::class)) {
+    $form->enableSpamProtection();
+}
+```
