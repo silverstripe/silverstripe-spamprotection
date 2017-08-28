@@ -2,14 +2,16 @@
 
 namespace SilverStripe\SpamProtection\Tests;
 
-use UserDefinedForm;
+use SilverStripe\UserForms\Model\UserDefinedForm;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\Form;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\TextField;
 use SilverStripe\SpamProtection\EditableSpamProtectionField;
 use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
-use SilverStripe\SpamProtection\Tests\EditableSpamProtectionFieldTest\Protector;
+use SilverStripe\SpamProtection\Tests\Stub\Protector;
 
 class EditableSpamProtectionFieldTest extends SapphireTest
 {
@@ -19,7 +21,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
     {
         parent::setUp();
 
-        if (!class_exists('EditableSpamProtectionField')) {
+        if (!class_exists(EditableSpamProtectionField::class)) {
             $this->markTestSkipped('"userforms" module not installed');
         }
 
@@ -64,12 +66,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formMock
             ->expects($this->once())
             ->method('sessionMessage')
-            ->with(
-                $this->anything(),
-                $this->stringContains('some field message'),
-                $this->anything(),
-                $this->anything()
-            );
+            ->with($this->stringContains('some field message'), $this->anything());
 
         $formFieldMock->validateField(array('MyField' => null), $formMock);
     }
@@ -89,13 +86,8 @@ class EditableSpamProtectionFieldTest extends SapphireTest
 
         $formMock
             ->expects($this->once())
-            ->method('sessionMessage')
-            ->with(
-                $this->anything(),
-                $this->stringContains('default error message'),
-                $this->anything(),
-                $this->anything()
-            );
+            ->method('sessionError')
+            ->with($this->stringContains('default error message'));
 
         $formFieldMock->validateField(array('MyField' => null), $formMock);
     }
@@ -105,7 +97,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $field = $this->getEditableFormFieldMock();
         $fields = $field->getCMSFields();
 
-        $this->assertInstanceOf('FieldGroup', $fields->fieldByName('Root.Main.SpamFieldMapping'));
+        $this->assertInstanceOf(FieldGroup::class, $fields->fieldByName('Root.Main.SpamFieldMapping'));
     }
 
     public function testSpamMapSettingsAreSerialised()
@@ -121,9 +113,11 @@ class EditableSpamProtectionFieldTest extends SapphireTest
 
     protected function getFormMock()
     {
-        $formMock = $this->getMockBuilder(Form::class, array('sessionMessage'))
+        $formMock = $this->getMockBuilder(Form::class)
+            ->setMethods(['sessionMessage', 'sessionError', 'getValidator'])
             ->disableOriginalConstructor()
             ->getMock();
+
         $formMock
             ->expects($this->any())
             ->method('getValidator')
@@ -137,7 +131,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $page = new UserDefinedForm();
         $page->write();
 
-        $formFieldMock = $this->getMockBuilder('TextField')
+        $formFieldMock = $this->getMockBuilder(TextField::class)
             ->disableOriginalConstructor()
             ->getMock();
 

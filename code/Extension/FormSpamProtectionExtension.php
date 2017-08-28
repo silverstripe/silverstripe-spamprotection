@@ -3,6 +3,7 @@
 namespace SilverStripe\SpamProtection\Extension;
 
 use SilverStripe\Core\Config\Config;
+use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
 
@@ -15,6 +16,8 @@ use SilverStripe\Core\Injector\Injector;
 
 class FormSpamProtectionExtension extends Extension
 {
+    use Configurable;
+
     /**
      * @config
      *

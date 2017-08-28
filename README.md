@@ -101,6 +101,7 @@ be set as the spam protector. The `getFormField()` method returns the
 `FormField` to be inserted into the `Form`. The `FormField` returned should be
 in charge of the validation process.
 
+```php
 <?php
 
 use CaptchaField;
