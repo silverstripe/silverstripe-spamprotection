@@ -1,5 +1,5 @@
 ---
-name: spamprotection
+Name: spamprotection
 ---
 SilverStripe\Forms\Form:
   extensions:

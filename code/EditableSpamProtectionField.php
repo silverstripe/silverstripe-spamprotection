@@ -18,7 +18,7 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableTextField;
 /**
  * @todo The userforms namespaces may still change, as the branch is not merged in yet
  */
-if (!class_exists(EditableFormFields::class)) {
+if (!class_exists(EditableFormField::class)) {
     return;
 }
 
