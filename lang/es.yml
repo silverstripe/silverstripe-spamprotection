@@ -1,5 +1,5 @@
 es:
-  EditableSpamProtectionField:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Campos de protección de spam'
     SINGULARNAME: 'Campo de protección de spam'
     SPAMFIELDMAPPING: 'Mapeo del campo spam'

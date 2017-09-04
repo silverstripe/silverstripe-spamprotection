@@ -1,5 +1,5 @@
 eo:
-  EditableSpamProtectionField:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Spamprotektaj kampoj'
     SINGULARNAME: 'Spamprotekta kampo'
     SPAMFIELDMAPPING: 'Spamkampa mapigo'

@@ -1,9 +1,15 @@
 <?php
 
+namespace SilverStripe\SpamProtection\Tests\FormSpamProtectionExtensionTest;
+
+use SilverStripe\Dev\TestOnly;
+use SilverStripe\Forms\TextField;
+use SilverStripe\SpamProtection\SpamProtector;
+
 /**
  * @package spamprotection
  */
-class FormSpamProtectionExtensionTest_BarProtector implements SpamProtector, TestOnly
+class BarProtector implements SpamProtector, TestOnly
 {
     public function getFormField($name = null, $title = null, $value = null)
     {

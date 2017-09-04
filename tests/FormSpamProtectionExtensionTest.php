@@ -1,5 +1,18 @@
 <?php
 
+namespace SilverStripe\SpamProtection\Tests;
+
+use SilverStripe\Control\Controller;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\Form;
+use SilverStripe\Forms\TextField;
+use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
+use SilverStripe\SpamProtection\Tests\Stub\FooProtector;
+use SilverStripe\SpamProtection\Tests\Stub\BarProtector;
+use SilverStripe\SpamProtection\Tests\Stub\BazProtector;
+
 /**
  * @package spamprotection
  */
@@ -12,24 +25,25 @@ class FormSpamProtectionExtensionTest extends SapphireTest
      */
     protected $form = null;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
-        $this->form = new Form($this, 'Form', new FieldList(
+        $this->form = new Form(new Controller, 'Form', new FieldList(
             new TextField('Title'),
             new TextField('Comment'),
             new TextField('URL')
         ), new FieldList());
+
         $this->form->disableSecurityToken();
     }
 
     public function testEnableSpamProtection()
     {
-        Config::inst()->update(
-            'FormSpamProtectionExtension',
+        Config::modify()->set(
+            FormSpamProtectionExtension::class,
             'default_spam_protector',
-            'FormSpamProtectionExtensionTest_FooProtector'
+            FooProtector::class
         );
 
         $form = $this->form->enableSpamProtection();
@@ -40,7 +54,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testEnableSpamProtectionCustomProtector()
     {
         $form = $this->form->enableSpamProtection(array(
-            'protector' => 'FormSpamProtectionExtensionTest_BarProtector'
+            'protector' => BarProtector::class
         ));
 
         $this->assertEquals('Bar', $form->Fields()->fieldByName('Captcha')->Title());
@@ -49,7 +63,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testEnableSpamProtectionCustomTitle()
     {
         $form = $this->form->enableSpamProtection(array(
-            'protector' => 'FormSpamProtectionExtensionTest_BarProtector',
+            'protector' => BarProtector::class,
             'title' => 'Baz',
         ));
 
@@ -59,7 +73,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testCustomOptions()
     {
         $form = $this->form->enableSpamProtection(array(
-            'protector' => 'FormSpamProtectionExtensionTest_BazProtector',
+            'protector' => BazProtector::class,
             'title' => 'Qux',
             'name' => 'Borris'
         ));
@@ -70,17 +84,19 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testConfigurableName()
     {
         $field_name = "test_configurable_name";
-        Config::inst()->update(
-            'FormSpamProtectionExtension', 'default_spam_protector',
-            'FormSpamProtectionExtensionTest_FooProtector'
+        Config::modify()->set(
+            FormSpamProtectionExtension::class,
+            'default_spam_protector',
+            FooProtector::class
         );
-        Config::inst()->update(
-            'FormSpamProtectionExtension', 'field_name',
+        Config::modify()->set(
+            FormSpamProtectionExtension::class,
+            'field_name',
             $field_name
         );
         $form = $this->form->enableSpamProtection();
         // remove for subsequent tests
-        Config::inst()->remove('FormSpamProtectionExtension', 'field_name');
+        Config::modify()->remove(FormSpamProtectionExtension::class, 'field_name');
         // field should take up configured name
         $this->assertEquals('Foo', $form->Fields()->fieldByName($field_name)->Title());
     }
@@ -88,7 +104,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testInsertBefore()
     {
         $form = $this->form->enableSpamProtection(array(
-            'protector' => 'FormSpamProtectionExtensionTest_FooProtector',
+            'protector' => FooProtector::class,
             'insertBefore' => 'URL'
         ));
 
@@ -102,7 +118,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
     public function testInsertBeforeMissing()
     {
         $form = $this->form->enableSpamProtection(array(
-            'protector' => 'FormSpamProtectionExtensionTest_FooProtector',
+            'protector' => FooProtector::class,
             'insertBefore' => 'NotAField'
         ));
 

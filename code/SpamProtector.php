@@ -1,5 +1,9 @@
 <?php
 
+namespace SilverStripe\SpamProtection;
+
+use SilverStripe\Forms\FormField;
+
 /**
  * SpamProtector base interface.
  *

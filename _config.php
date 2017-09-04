@@ -8,4 +8,7 @@
  *
  * @package spamprotection
  */
-Deprecation::notification_version('1.1', 'spamprotection');
+
+use SilverStripe\Dev\Deprecation;
+
+Deprecation::notification_version('3.0', 'spamprotection');

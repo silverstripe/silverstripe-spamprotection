@@ -1,0 +1,11 @@
+mappings:
+  SpamProtector: SilverStripe\SpamProtection\SpamProtector
+  CommentSpamProtection: SilverStripe\SpamProtection\Extension\CommentSpamProtection
+  EditableSpamProtectionField: SilverStripe\SpamProtection\EditableSpamProtectionField
+  FormSpamProtectionExtension: SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension
+  EditableSpamProtectionFieldTest: SilverStripe\SpamProtection\Tests\EditableSpamProtectionFieldTest
+  EditableSpamProtectionFieldTest_Protector: SilverStripe\SpamProtection\Tests\Stub\Protector
+  FormSpamProtectionExtensionTest: SilverStripe\SpamProtection\Tests\FormSpamProtectionExtensionTest
+  FormSpamProtectionExtensionTest_BarProtector: SilverStripe\SpamProtection\Tests\Stub\BarProtector
+  FormSpamProtectionExtensionTest_BazProtector: SilverStripe\SpamProtection\Tests\Stub\BazProtector
+  FormSpamProtectionExtensionTest_FooProtector: SilverStripe\SpamProtection\Tests\Stub\FooProtector
