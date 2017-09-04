@@ -19,16 +19,16 @@ SilverStripe 4.0 or greater
 
 This module provides a generic, consistent API for adding spam protection to
 your SilverStripe Forms. This does not provide any spam protection out of the
-box, for that, you must also download one of the spam protection
+box. For that, you must also download one of the spam protection
 implementations. Currently available options are:
 
-* [Mollom](https://github.com/silverstripe/silverstripe-mollom)
 * [Recaptcha](https://github.com/chillu/silverstripe-recaptcha)
 * [MathSpamProtection](https://github.com/silverstripe/silverstripe-mathspamprotection)
-* [Akismet](https://github.com/tractorcow/silverstripe-akismet)
+* [Akismet](https://github.com/silverstripe/silverstripe-akismet)
+* [Mollom](https://github.com/silverstripe-archive/silverstripe-mollom)
 
 As a developer you can also provide your own protector by creating a class which
-implements the `SpamProtector` interface. More on that below.
+implements the `\SilverStripe\SpamProtection\SpamProtector` interface. More on that below.
 
 ## Configuring
 
@@ -56,7 +56,7 @@ $form->enableSpamProtection();
 ```
 
 The logic to perform the actual spam validation is controlled by each of the
-individual `SpamProtector` implementation since they each require a different
+individual `SpamProtector` implementations since they each require a different
 implementation client side or server side.
 
 ### Options
@@ -72,15 +72,15 @@ $form->enableSpamProtection(array(
 
 Options to configure are:
 
-*`protector`* a class name string or class instance which implements
-`SpamProtector`. Defaults to your
-`FormSpamProtectionExtension.default_spam_protector` value.
+* `protector`: a class name string or class instance which implements
+`\SilverStripe\SpamProtection\SpamProtector`. Defaults to your
+`SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension.default_spam_protector` value.
 
-*`name`* the form field name argument for the Captcha. Defaults to `Catcha`.
-*`title`* title of the Captcha form field. Defaults to `''`
-*`insertBefore`* name of existing field to insert the spam protection field prior to
-*`mapping`* an array mapping of the Form fields to the standardized list of
-field names. The list of standardized fields to pass to the spam protector are:
+* `name`: the form field name argument for the Captcha. Defaults to `Captcha`.
+* `title`: title of the Captcha form field. Defaults to `''`
+* `insertBefore`: name of existing field to insert the spam protection field prior to
+* `mapping`: an array mapping of the Form fields to the standardised list of
+field names. The list of standardised fields to pass to the spam protector are:
 
 ```
 title
@@ -96,7 +96,7 @@ authorId
 
 ## Defining your own `SpamProtector`
 
-Any class that implements `SpamProtector` and the `getFormField()` method can
+Any class that implements `\SilverStripe\SpamProtection\SpamProtector` and the `getFormField()` method can
 be set as the spam protector. The `getFormField()` method returns the
 `FormField` to be inserted into the `Form`. The `FormField` returned should be
 in charge of the validation process.
@@ -130,7 +130,7 @@ currently selected SpamProtector instance.
 
 Spam protection is useful to provide but in some cases we do not want to require
 the developer to use spam protection. In that case, modules can provide the
-following pattern
+following pattern:
 
 ```php
 use SilverStripe\Forms\Form;
