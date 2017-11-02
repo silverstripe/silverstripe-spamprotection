@@ -137,6 +137,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
 
         $editableFormFieldMock = new EditableSpamProtectionField(array(
             'ParentID' => $page->ID,
+            'ParentClass' => get_class($page),
             'Name' => 'MyField',
             'CustomErrorMessage' => 'default error message'
         ));
