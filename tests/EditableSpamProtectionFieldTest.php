@@ -111,6 +111,13 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $this->assertSame('baz', $field->spamMapValue('bar'));
     }
 
+    public function testGetIcon()
+    {
+        $field = new EditableSpamProtectionField;
+
+        $this->assertContains('/images/editablespamprotectionfield.png', $field->getIcon());
+    }
+
     protected function getFormMock()
     {
         $formMock = $this->getMockBuilder(Form::class)
