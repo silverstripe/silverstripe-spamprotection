@@ -4,6 +4,7 @@ namespace SilverStripe\SpamProtection;
 
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
@@ -15,9 +16,6 @@ use SilverStripe\UserForms\Model\EditableFormField\EditableEmailField;
 use SilverStripe\UserForms\Model\EditableFormField\EditableNumericField;
 use SilverStripe\UserForms\Model\EditableFormField\EditableTextField;
 
-/**
- * @todo The userforms namespaces may still change, as the branch is not merged in yet
- */
 if (!class_exists(EditableFormField::class)) {
     return;
 }
@@ -152,12 +150,10 @@ class EditableSpamProtectionField extends EditableFormField
         // Get protector
         $protector = FormSpamProtectionExtension::get_protector();
         if (!$protector) {
-            var_dump('a');
             return $fields;
         }
 
         if ($this->Parent()->Fields() instanceof UnsavedRelationList) {
-            var_dump('b');
             return $fields;
         }
 
@@ -263,7 +259,15 @@ class EditableSpamProtectionField extends EditableFormField
 
     public function getIcon()
     {
-        return 'spamprotection/images/' . strtolower($this->class) . '.png';
+        // Get the end of the full qualified class name
+        $shortClass = end(explode("\\", __CLASS__));
+
+        $resource = ModuleLoader::getModule('silverstripe/spamprotection')
+            ->getResource('images/' . strtolower($shortClass) . '.png');
+
+        if ($resource->exists()) {
+            return $resource->getRelativePath();
+        }
     }
 
     public function showInReports()
