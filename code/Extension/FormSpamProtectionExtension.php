@@ -2,7 +2,6 @@
 
 namespace SilverStripe\SpamProtection\Extension;
 
-use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
@@ -71,7 +70,7 @@ class FormSpamProtectionExtension extends Extension
         if (isset($options['protector'])) {
             $protector = $options['protector'];
         } else {
-            $protector = Config::inst()->get(self::class, 'default_spam_protector');
+            $protector = self::config()->get('default_spam_protector');
         }
 
         if ($protector && class_exists($protector)) {
@@ -94,7 +93,7 @@ class FormSpamProtectionExtension extends Extension
         if (isset($options['name'])) {
             $name = $options['name'];
         } else {
-            $name = Config::inst()->get(self::class, 'field_name');
+            $name = $this->config()->get('field_name');
         }
 
         // captcha field title
