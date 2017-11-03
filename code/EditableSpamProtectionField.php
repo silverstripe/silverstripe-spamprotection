@@ -259,15 +259,14 @@ class EditableSpamProtectionField extends EditableFormField
 
     public function getIcon()
     {
-        // Get the end of the full qualified class name
-        $shortClass = end(explode("\\", __CLASS__));
-
         $resource = ModuleLoader::getModule('silverstripe/spamprotection')
-            ->getResource('images/' . strtolower($shortClass) . '.png');
+            ->getResource('images/editablespamprotectionfield.png');
 
-        if ($resource->exists()) {
-            return $resource->getRelativePath();
+        if (!$resource->exists()) {
+            return '';
         }
+
+        return $resource->getURL();
     }
 
     public function showInReports()
