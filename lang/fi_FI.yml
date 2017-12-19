@@ -1,5 +1,5 @@
 fi_FI:
-  EditableSpamProtectionField:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Roskapostisuotimen kentät'
     SINGULARNAME: 'Roskapostisuotimen kenttä'
     SPAMFIELDMAPPING: 'Roskapostikentän kuvaus'
