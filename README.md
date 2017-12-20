@@ -1,6 +1,7 @@
 # SpamProtection Module
 
-[![Build Status](https://secure.travis-ci.org/silverstripe/silverstripe-spamprotection.png?branch=master)](http://travis-ci.org/silverstripe/silverstripe-spamprotection)
+[![Build Status](https://travis-ci.org/silverstripe/silverstripe-spamprotection.svg?)](https://travis-ci.org/silverstripe/silverstripe-spamprotection)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-spamprotection/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-spamprotection/?branch=master)
 [![Code Coverage](https://codecov.io/gh/silverstripe/silverstripe-spamprotection/branch/master/graph/badge.svg)](https://codecov.io/gh/silverstripe/silverstripe-spamprotection)
 
 ## Maintainer Contact
@@ -13,7 +14,13 @@
 
 ## Requirements
 
-SilverStripe 4.0 or greater
+SilverStripe 4.0+
+
+**Note:** For SilverStripe 3.x, please use the [2.x release line](https://github.com/silverstripe/silverstripe-spamprotection/tree/2.0).
+
+## Install
+
+To install run `composer require silverstripe/spamprotection`.
 
 ## Documentation
 
@@ -41,7 +48,7 @@ spam protection hooks with that protector.
 
 ```yaml
 ---
-name: spamprotection
+name: mycustomspamprotection
 ---
 SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension:
   default_spam_protector: MollomSpamProtector
