@@ -142,11 +142,10 @@ following pattern:
 
 ```php
 use SilverStripe\Forms\Form;
-use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
 
 $form = new Form(/* .. */);
 
-if ($form->hasExtension(FormSpamProtectionExtension::class)) {
+if ($form->hasExtension('SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension')) {
     $form->enableSpamProtection();
 }
 ```
