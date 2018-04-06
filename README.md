@@ -29,8 +29,7 @@ your SilverStripe Forms. This does not provide any spam protection out of the
 box. For that, you must also download one of the spam protection
 implementations. Currently available options are:
 
-* [reCAPTCHA v2](https://github.com/chillu/silverstripe-recaptcha)
-* [Invisible reCAPTCHA](https://github.com/UndefinedOffset/silverstripe-nocaptcha)
+* reCAPTCHA v2 (two implementations: [one](https://github.com/chillu/silverstripe-recaptcha), [two](https://github.com/UndefinedOffset/silverstripe-nocaptcha))
 * [MathSpamProtection](https://github.com/silverstripe/silverstripe-mathspamprotection)
 * [Akismet](https://github.com/silverstripe/silverstripe-akismet)
 * [Mollom](https://github.com/silverstripe-archive/silverstripe-mollom)
