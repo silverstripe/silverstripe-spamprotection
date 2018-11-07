@@ -122,7 +122,7 @@ class EditableSpamProtectionField extends EditableFormField
      */
     public function onBeforeWrite()
     {
-        $fieldMap = Convert::json2array($this->SpamFieldSettings);
+        $fieldMap = json_decode($this->SpamFieldSettings, true);
         if (empty($fieldMap)) {
             $fieldMap = array();
         }
@@ -132,7 +132,7 @@ class EditableSpamProtectionField extends EditableFormField
                 $fieldMap[substr($key, 8)] = $value;
             }
         }
-        $this->setField('SpamFieldSettings', Convert::raw2json($fieldMap));
+        $this->setField('SpamFieldSettings', json_encode($fieldMap));
 
         return parent::onBeforeWrite();
     }
@@ -192,7 +192,7 @@ class EditableSpamProtectionField extends EditableFormField
      */
     public function spamMapValue($mapSetting)
     {
-        $map = Convert::json2array($this->SpamFieldSettings);
+        $map = json_decode($this->SpamFieldSettings, true);
         if (empty($map)) {
             $map = array();
         }
