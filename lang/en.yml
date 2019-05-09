@@ -1,6 +1,9 @@
 en:
   SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Spam Protection Fields'
+    PLURALS:
+      one: 'A Spam Protection Field'
+      other: '{count} Spam Protection Fields'
     SINGULARNAME: 'Spam Protection Field'
     SPAMFIELDMAPPING: 'Spam Field Mapping'
     SPAMFIELDMAPPINGDESCRIPTION: 'Select the form fields that correspond to any relevant spam protection identifiers'
