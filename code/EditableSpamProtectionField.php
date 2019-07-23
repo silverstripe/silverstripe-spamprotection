@@ -215,7 +215,7 @@ if (class_exists('EditableFormField')) {
                 $foundError = false;
 
                 // field validate implementation may not add error to validator
-                if (count($errors) > 0) {
+                if ($errors && count($errors) > 0) {
                     // check if error already added from fields' validate method
                     foreach ($errors as $error) {
                         if ($error['fieldName'] == $this->Name) {
