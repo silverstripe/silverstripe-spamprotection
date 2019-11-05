@@ -21,10 +21,7 @@
     "extra": {
         "expose": [
             "images"
-        ],
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
+        ]
     },
     "autoload": {
         "psr-4": {
