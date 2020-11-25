@@ -77,7 +77,11 @@ class EditableSpamProtectionField extends EditableFormField
         $protector->setFieldMapping($fieldMapping);
 
         // Generate field
-        return $protector->getFormField($this->Name, $this->Title, null);
+        $field = $protector->getFormField($this->Name, $this->Title, null);
+
+        $this->doUpdateFormField($field);
+
+        return $field;
     }
 
     /**
