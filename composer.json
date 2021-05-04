@@ -2,14 +2,20 @@
     "name": "silverstripe/spamprotection",
     "description": "Spam protection module for SilverStripe.",
     "type": "silverstripe-vendormodule",
-    "keywords": ["silverstripe", "spamprotection"],
-    "authors": [{
-        "name": "Saophalkun Ponlu",
-        "email": "phalkunz@silverstripe.com"
-    }, {
-        "name": "Will Rossiter",
-        "email": "will@fullscreen.io"
-    }],
+    "keywords": [
+        "silverstripe",
+        "spamprotection"
+    ],
+    "authors": [
+        {
+            "name": "Saophalkun Ponlu",
+            "email": "phalkunz@silverstripe.com"
+        },
+        {
+            "name": "Will Rossiter",
+            "email": "will@fullscreen.io"
+        }
+    ],
     "require": {
         "silverstripe/framework": "^4.0"
     },
@@ -21,10 +27,7 @@
     "extra": {
         "expose": [
             "images"
-        ],
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        }
+        ]
     },
     "autoload": {
         "psr-4": {
@@ -32,7 +35,7 @@
             "SilverStripe\\SpamProtection\\Tests\\": "tests/"
         }
     },
-	"license": "BSD-3-Clause",
+    "license": "BSD-3-Clause",
     "minimum-stability": "dev",
     "prefer-stable": true
 }
