@@ -1,6 +1,9 @@
 eo:
   SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Spamprotektaj kampoj'
+    PLURALS:
+      one: 'Unu spamprotekta kampo'
+      other: '{count} spamprotektaj kampoj'
     SINGULARNAME: 'Spamprotekta kampo'
     SPAMFIELDMAPPING: 'Spamkampa mapigo'
     SPAMFIELDMAPPINGDESCRIPTION: 'Elektu la kampojn kiuj rilatas al eventualaj rilataj spamprotektaj identigiloj'

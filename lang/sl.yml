@@ -1,0 +1,4 @@
+sl:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
+    PLURALNAME: 'Polja za zaščito pred neželeno pošto'
+    SINGULARNAME: 'Polje za zaščito pred neželeno pošto'

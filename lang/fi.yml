@@ -1,6 +1,9 @@
 fi:
   SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Roskapostisuojauksen kentät'
+    PLURALS:
+      one: 'Roskapostin suodatuskenttä'
+      other: '{count} Roskapostin suodatuskenttää'
     SINGULARNAME: 'Roskapostisuojauksen kenttä'
     SPAMFIELDMAPPING: 'Roskapostikentän kuvaus'
     SPAMFIELDMAPPINGDESCRIPTION: 'Valitse lomakekenttä, joka vastaa mitä tahansa oleellista roskapostisuodatuksen tunnistetta'
