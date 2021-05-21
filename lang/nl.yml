@@ -1,0 +1,9 @@
+nl:
+  SilverStripe\SpamProtection\EditableSpamProtectionField:
+    PLURALNAME: 'Anti-spam velden'
+    PLURALS:
+      one: 'Een anti-spam veld'
+      other: '{count} Anti-spam velden'
+    SINGULARNAME: 'Anti-spam veld'
+    SPAMFIELDMAPPING: 'Spam-velden koppelen'
+    SPAMFIELDMAPPINGDESCRIPTION: 'Kies de velden die overeenkomen met de anti-spam identifiers'
