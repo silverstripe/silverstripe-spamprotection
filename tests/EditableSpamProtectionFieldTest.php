@@ -2,6 +2,8 @@
 
 namespace SilverStripe\SpamProtection\Tests;
 
+use ReflectionClass;
+use SilverStripe\ORM\DataList;
 use SilverStripe\UserForms\Model\UserDefinedForm;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
@@ -152,5 +154,25 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $editableFormFieldMock->setFormField($formFieldMock);
 
         return $editableFormFieldMock;
+    }
+
+    public function testGetCandidateFieldsParentStatus()
+    {
+        $field = new EditableSpamProtectionField();
+        $field->Name = 'MyField';
+        $reflection = new ReflectionClass($field);
+        $method = $reflection->getMethod('getCandidateFields');
+        $method->setAccessible(true);
+        // Assert with no parent
+        $list = $method->invoke($field);
+        $this->assertTrue($list instanceof DataList);
+        // Assert with parent
+        $page = new UserDefinedForm();
+        $page->write();
+        $field->ParentID = $page->ID;
+        $field->ParentClass = get_class($page);
+        $field->write();
+        $list = $method->invoke($field);
+        $this->assertTrue($list instanceof DataList);
     }
 }
