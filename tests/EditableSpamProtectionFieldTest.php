@@ -17,7 +17,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
 {
     protected $usesDatabase = true;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -115,7 +115,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
     {
         $field = new EditableSpamProtectionField;
 
-        $this->assertContains('/images/editablespamprotectionfield.png', $field->getIcon());
+        $this->assertStringContainsString('/images/editablespamprotectionfield.png', $field->getIcon());
     }
 
     protected function getFormMock()
