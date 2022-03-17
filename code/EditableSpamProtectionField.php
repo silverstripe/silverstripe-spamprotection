@@ -9,6 +9,7 @@ use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\FormField;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
 use SilverStripe\UserForms\Model\EditableFormField;
@@ -112,8 +113,11 @@ class EditableSpamProtectionField extends EditableFormField
         }
 
         // Get all candidates of the above types
-        return $this
-            ->Parent()
+        $parent = $this->Parent();
+        if (!$parent) {
+            return DataList::create(EditableFormField::class);
+        }
+        return $parent
             ->Fields()
             ->filter('ClassName', $typesInherit)
             ->exclude('Title', ''); // Ignore this field and those without titles
