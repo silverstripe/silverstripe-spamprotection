@@ -130,13 +130,13 @@ class EditableSpamProtectionField extends EditableFormField
      */
     public function onBeforeWrite()
     {
-        $fieldMap = json_decode($this->SpamFieldSettings, true);
+        $fieldMap = json_decode($this->SpamFieldSettings ?? '', true);
         if (empty($fieldMap)) {
             $fieldMap = array();
         }
 
         foreach ($this->record as $key => $value) {
-            if (substr($key, 0, 8) === 'spammap-') {
+            if (substr($key ?? '', 0, 8) === 'spammap-') {
                 $fieldMap[substr($key, 8)] = $value;
             }
         }
@@ -176,7 +176,7 @@ class EditableSpamProtectionField extends EditableFormField
 
         // Generate field specific settings
         $mappableFields = FormSpamProtectionExtension::config()->get('mappable_fields');
-        $mappableFieldsMerged = array_combine($mappableFields, $mappableFields);
+        $mappableFieldsMerged = array_combine($mappableFields ?? [], $mappableFields ?? []);
         foreach ($this->getCandidateFields() as $otherField) {
             $mapSetting = "Map-{$otherField->Name}";
             $fieldOption = DropdownField::create(
@@ -200,12 +200,12 @@ class EditableSpamProtectionField extends EditableFormField
      */
     public function spamMapValue($mapSetting)
     {
-        $map = json_decode($this->SpamFieldSettings, true);
+        $map = json_decode($this->SpamFieldSettings ?? '', true);
         if (empty($map)) {
             $map = array();
         }
 
-        if (array_key_exists($mapSetting, $map)) {
+        if (array_key_exists($mapSetting, $map ?? [])) {
             return $map[$mapSetting];
         }
         return '';
@@ -235,7 +235,7 @@ class EditableSpamProtectionField extends EditableFormField
             $foundError = false;
 
             // field validate implementation may not add error to validator
-            if (count($errors) > 0) {
+            if (count($errors ?? []) > 0) {
                 // check if error already added from fields' validate method
                 foreach ($errors as $error) {
                     if ($error['fieldName'] == $this->Name) {

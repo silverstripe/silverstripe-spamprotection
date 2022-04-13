@@ -73,7 +73,7 @@ class FormSpamProtectionExtension extends Extension
             $protector = self::config()->get('default_spam_protector');
         }
 
-        if ($protector && class_exists($protector)) {
+        if ($protector && class_exists($protector ?? '')) {
             return Injector::inst()->create($protector);
         } else {
             return null;
