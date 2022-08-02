@@ -1,9 +1,7 @@
 # SpamProtection Module
 
 [![CI](https://github.com/silverstripe/silverstripe-spamprotection/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-spamprotection/actions/workflows/ci.yml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-spamprotection/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-spamprotection/?branch=master)
-[![SilverStripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
-[![Code Coverage](https://codecov.io/gh/silverstripe/silverstripe-spamprotection/branch/master/graph/badge.svg)](https://codecov.io/gh/silverstripe/silverstripe-spamprotection)
+[![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
 
 ## Maintainer Contact
 
@@ -15,9 +13,9 @@
 
 ## Requirements
 
-SilverStripe 4.0+
+Silverstripe 4.0+
 
-**Note:** For SilverStripe 3.x, please use the [2.x release line](https://github.com/silverstripe/silverstripe-spamprotection/tree/2.0).
+**Note:** For Silverstripe 3.x, please use the [2.x release line](https://github.com/silverstripe/silverstripe-spamprotection/tree/2.0).
 
 ## Install
 
@@ -26,7 +24,7 @@ To install run `composer require silverstripe/spamprotection`.
 ## Documentation
 
 This module provides a generic, consistent API for adding spam protection to
-your SilverStripe Forms. This does not provide any spam protection out of the
+your Silverstripe Forms. This does not provide any spam protection out of the
 box. For that, you must also download one of the spam protection
 implementations. Currently available options are:
 
