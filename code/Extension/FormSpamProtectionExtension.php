@@ -118,7 +118,7 @@ class FormSpamProtectionExtension extends Extension
                 // Add before field specified by insertBefore
                 $inserted = false;
                 if (!empty($options['insertBefore'])) {
-                    $inserted = $this->owner->Fields()->insertBefore($field, $options['insertBefore']);
+                    $inserted = $this->owner->Fields()->insertBefore($options['insertBefore'], $field);
                 }
                 if (!$inserted) {
                     // Add field to end if not added already
