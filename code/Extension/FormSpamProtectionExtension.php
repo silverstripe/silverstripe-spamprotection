@@ -2,6 +2,7 @@
 
 namespace SilverStripe\SpamProtection\Extension;
 
+use LogicException;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
@@ -84,6 +85,7 @@ class FormSpamProtectionExtension extends Extension
      * Activates the spam protection module.
      *
      * @param array $options
+     * @throws LogicException when get_protector method returns NULL.
      * @return Object
      */
     public function enableSpamProtection($options = array())
@@ -106,7 +108,11 @@ class FormSpamProtectionExtension extends Extension
         // set custom mapping on this form
         $protector = self::get_protector($options);
 
-        if (isset($options['mapping'])) {
+        if ($protector === null) {
+            throw new LogicException('No spam protector has been set. Null is not valid value.');
+        }
+
+        if ($protector && isset($options['mapping'])) {
             $protector->setFieldMapping($options['mapping']);
         }
 
