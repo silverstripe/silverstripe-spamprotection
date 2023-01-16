@@ -2,6 +2,7 @@
 
 namespace SilverStripe\SpamProtection\Tests;
 
+use LogicException;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
@@ -36,6 +37,14 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         ), new FieldList());
 
         $this->form->disableSecurityToken();
+    }
+
+    public function testEnableSpamProtectionThrowsException()
+    {
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('No spam protector has been set. Null is not valid value.');
+
+        $this->form->enableSpamProtection();
     }
 
     public function testEnableSpamProtection()
