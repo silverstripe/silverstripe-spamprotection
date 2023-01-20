@@ -1,6 +1,0 @@
----
-Name: spamprotectionlegacy
----
-SilverStripe\ORM\DatabaseAdmin:
-  classname_value_remapping:
-    EditableSpamProtectionField: 'SilverStripe\SpamProtection\EditableSpamProtectionField'
