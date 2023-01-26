@@ -44,6 +44,7 @@ class FormSpamProtectionExtensionTest extends SapphireTest
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('No spam protector has been set. Null is not valid value.');
 
+        Config::modify()->set(FormSpamProtectionExtension::class, 'default_spam_protector', null);
         $this->form->enableSpamProtection();
     }
 
