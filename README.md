@@ -3,6 +3,12 @@
 [![CI](https://github.com/silverstripe/silverstripe-spamprotection/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-spamprotection/actions/workflows/ci.yml)
 [![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
 
+## Installation
+
+```sh
+composer require silverstripe/spamprotection
+```
+
 ## Maintainer Contact
 
  * Saophalkun Ponlu
@@ -10,16 +16,6 @@
 
  * Will Rossiter
    <will (at) fullscreen (dot) io>
-
-## Requirements
-
-Silverstripe 4.0+
-
-**Note:** For Silverstripe 3.x, please use the [2.x release line](https://github.com/silverstripe/silverstripe-spamprotection/tree/2.0).
-
-## Install
-
-To install run `composer require silverstripe/spamprotection`.
 
 ## Documentation
 
