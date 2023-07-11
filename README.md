@@ -28,6 +28,7 @@ implementations. Currently available options are:
 * [MathSpamProtection](https://github.com/silverstripe/silverstripe-mathspamprotection)
 * [Akismet](https://github.com/silverstripe/silverstripe-akismet)
 * [Mollom](https://github.com/silverstripe-archive/silverstripe-mollom)
+* [Cloudflare Turnstile](https://github.com/silverstripe-terraformers/turnstile-captcha/)
 
 As a developer you can also provide your own protector by creating a class which
 implements the `\SilverStripe\SpamProtection\SpamProtector` interface. More on that below.
