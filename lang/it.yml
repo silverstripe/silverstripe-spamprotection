@@ -2,9 +2,9 @@ it:
   SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Campi di Prevenzione Spam'
     PLURALS:
+      many: '{count} Campi di Prevenzione Spam'
       one: 'Un Campo di Prevenzione Spam'
       other: '{count} Campi di Prevenzione Spam'
-      many: '{count} Campi di Prevenzione Spam'
     SINGULARNAME: 'Campo di Prevenzione Spam'
     SPAMFIELDMAPPING: 'Mappatura Campo Spam'
     SPAMFIELDMAPPINGDESCRIPTION: 'Selezionare i campi della form che forniscono una qualche protezione dallo spam'
