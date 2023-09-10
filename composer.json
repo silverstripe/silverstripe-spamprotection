@@ -6,16 +6,6 @@
         "silverstripe",
         "spamprotection"
     ],
-    "authors": [
-        {
-            "name": "Saophalkun Ponlu",
-            "email": "phalkunz@silverstripe.com"
-        },
-        {
-            "name": "Will Rossiter",
-            "email": "will@fullscreen.io"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "silverstripe/framework": "^5"
@@ -33,11 +23,17 @@
     },
     "autoload": {
         "psr-4": {
-            "SilverStripe\\SpamProtection\\": "code/",
+            "SilverStripe\\SpamProtection\\": "src/",
             "SilverStripe\\SpamProtection\\Tests\\": "tests/"
         }
     },
     "license": "BSD-3-Clause",
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true
+        }
+    }
 }

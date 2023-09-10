@@ -9,14 +9,6 @@
 composer require silverstripe/spamprotection
 ```
 
-## Maintainer Contact
-
- * Saophalkun Ponlu
-   <phalkunz (at) silverstripe (dot) com>
-
- * Will Rossiter
-   <will (at) fullscreen (dot) io>
-
 ## Documentation
 
 This module provides a generic, consistent API for adding spam protection to
@@ -40,7 +32,7 @@ need to rebuild your database through `dev/build` and set the default protector
 via SilverStripe's config system. This will update any Form instances that have
 spam protection hooks with that protector.
 
-*mysite/_config/spamprotection.yml*
+*app/_config/spamprotection.yml*
 
 ```yaml
 ---
@@ -67,10 +59,10 @@ implementation client side or server side.
 `enableSpamProtection` takes a hash of optional configuration values.
 
 ```php
-$form->enableSpamProtection(array(
+$form->enableSpamProtection([
     'protector' => MathSpamProtector::class,
     'name' => 'Captcha'
-));
+]);
 ```
 
 Options to configure are:
@@ -120,6 +112,7 @@ class CustomSpamProtector implements SpamProtector
 	}
 }
 ```
+
 
 ## Using Spam Protection with User Forms
 

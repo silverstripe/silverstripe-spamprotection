@@ -3,7 +3,6 @@
 namespace SilverStripe\SpamProtection;
 
 use SilverStripe\Core\ClassInfo;
-use SilverStripe\Core\Convert;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldGroup;
@@ -41,15 +40,15 @@ class EditableSpamProtectionField extends EditableFormField
      * @var array
      * @config
      */
-    private static $check_fields = array(
+    private static $check_fields = [
         EditableEmailField::class,
         EditableTextField::class,
         EditableNumericField::class
-    );
+    ];
 
-    private static $db = array(
+    private static $db = [
         'SpamFieldSettings' => 'Text'
-    );
+    ];
 
     /**
      * @var FormField
@@ -69,12 +68,14 @@ class EditableSpamProtectionField extends EditableFormField
         }
 
         // Extract saved field mappings and update this field.
-        $fieldMapping = array();
+        $fieldMapping = [];
+
         foreach ($this->getCandidateFields() as $otherField) {
             $mapSetting = "Map-{$otherField->Name}";
             $spamField = $this->spamMapValue($mapSetting);
             $fieldMapping[$otherField->Name] = $spamField;
         }
+
         $protector->setFieldMapping($fieldMapping);
 
         // Generate field
@@ -106,7 +107,8 @@ class EditableSpamProtectionField extends EditableFormField
 
         // Get list of all configured classes available for spam detection
         $types = $this->config()->get('check_fields');
-        $typesInherit = array();
+        $typesInherit = [];
+
         foreach ($types as $type) {
             $subTypes = ClassInfo::subclassesFor($type);
             $typesInherit = array_merge($typesInherit, $subTypes);
@@ -131,8 +133,9 @@ class EditableSpamProtectionField extends EditableFormField
     public function onBeforeWrite()
     {
         $fieldMap = json_decode($this->SpamFieldSettings ?? '', true);
+
         if (empty($fieldMap)) {
-            $fieldMap = array();
+            $fieldMap = [];
         }
 
         foreach ($this->record as $key => $value) {
@@ -202,7 +205,7 @@ class EditableSpamProtectionField extends EditableFormField
     {
         $map = json_decode($this->SpamFieldSettings ?? '', true);
         if (empty($map)) {
-            $map = array();
+            $map = [];
         }
 
         if (array_key_exists($mapSetting, $map ?? [])) {
@@ -255,15 +258,18 @@ class EditableSpamProtectionField extends EditableFormField
         }
     }
 
+
     public function getFieldValidationOptions()
     {
         return FieldList::create();
     }
 
+
     public function getRequired()
     {
         return false;
     }
+
 
     public function getIcon()
     {
