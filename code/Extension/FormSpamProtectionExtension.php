@@ -6,7 +6,6 @@ use LogicException;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
-use SilverStripe\View\Requirements;
 
 /**
  * An extension to the {@link Form} class which provides the method
@@ -38,7 +37,7 @@ class FormSpamProtectionExtension extends Extension
      *
      * @var array $mappable_fields
      */
-    private static $mappable_fields =  [
+    private static $mappable_fields =  array(
         'id',
         'title',
         'body',
@@ -49,7 +48,7 @@ class FormSpamProtectionExtension extends Extension
         'authorUrl',
         'authorIp',
         'authorId'
-    ];
+    );
 
     /**
      * @config
@@ -89,7 +88,7 @@ class FormSpamProtectionExtension extends Extension
      * @throws LogicException when get_protector method returns NULL.
      * @return Object
      */
-    public function enableSpamProtection($options = [])
+    public function enableSpamProtection($options = array())
     {
 
         // captcha form field name (must be unique)
@@ -110,8 +109,7 @@ class FormSpamProtectionExtension extends Extension
         $protector = self::get_protector($options);
 
         if ($protector === null) {
-            Requirements::customScript('console.error("No spam protector has been set on this form.")');
-            return $this->owner;
+            throw new LogicException('No spam protector has been set. Null is not valid value.');
         }
 
         if ($protector && isset($options['mapping'])) {

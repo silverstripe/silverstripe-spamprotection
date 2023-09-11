@@ -14,19 +14,19 @@ class CommentSpamProtection extends Extension
 {
     public function alterCommentForm(&$form)
     {
-        $form->enableSpamProtection([
+        $form->enableSpamProtection(array(
             'name' => 'IsSpam',
-            'mapping' => [
+            'mapping' => array(
                 'Name' => 'authorName',
                 'Email' => 'authorEmail',
                 'URL' => 'authorUrl',
                 'Comment' => 'body',
                 'ReturnURL' => 'contextUrl'
-            ],
-            'checks' => [
+            ),
+            'checks' => array(
                 'spam',
                 'profanity'
-            ]
-        ]);
+            )
+        ));
     }
 }

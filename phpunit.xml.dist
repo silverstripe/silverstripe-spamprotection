@@ -8,7 +8,7 @@
 
 	<filter>
 		<whitelist addUncoveredFilesFromWhitelist="true">
-			<directory suffix=".php">src/</directory>
+			<directory suffix=".php">code/</directory>
 			<exclude>
 				<directory suffix=".php">tests/</directory>
 			</exclude>
