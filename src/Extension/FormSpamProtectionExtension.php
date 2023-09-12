@@ -6,6 +6,7 @@ use LogicException;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
+use Psr\Log\LoggerInterface;
 
 /**
  * An extension to the {@link Form} class which provides the method
@@ -27,6 +28,13 @@ class FormSpamProtectionExtension extends Extension
      * @var string $spam_protector
      */
     private static $default_spam_protector;
+
+    /**
+     * @config
+     *
+     * @var bool
+     */
+    private static $throw_exception_on_missing_protector = true;
 
     /**
      * @config
@@ -109,7 +117,13 @@ class FormSpamProtectionExtension extends Extension
         $protector = self::get_protector($options);
 
         if ($protector === null) {
-            throw new LogicException('No spam protector has been set. Null is not valid value.');
+            if ($this->config()->get('throw_exception_on_missing_protector')) {
+                throw new LogicException('No spam protector has been set. Null is not valid value.');
+            } else {
+                Injector::inst()->get(LoggerInterface::class)->warning(
+                    'No spam protector has been set. Null is not valid value.'
+                );
+            }
         }
 
         if ($protector && isset($options['mapping'])) {
