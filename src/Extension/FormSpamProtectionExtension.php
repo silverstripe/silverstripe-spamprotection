@@ -37,7 +37,7 @@ class FormSpamProtectionExtension extends Extension
      *
      * @var array $mappable_fields
      */
-    private static $mappable_fields =  array(
+    private static $mappable_fields =  [
         'id',
         'title',
         'body',
@@ -48,7 +48,7 @@ class FormSpamProtectionExtension extends Extension
         'authorUrl',
         'authorIp',
         'authorId'
-    );
+    ];
 
     /**
      * @config
@@ -88,7 +88,7 @@ class FormSpamProtectionExtension extends Extension
      * @throws LogicException when get_protector method returns NULL.
      * @return Object
      */
-    public function enableSpamProtection($options = array())
+    public function enableSpamProtection($options = [])
     {
 
         // captcha form field name (must be unique)

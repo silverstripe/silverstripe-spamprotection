@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SilverStripe\\SpamProtection\\": "code/",
+            "SilverStripe\\SpamProtection\\": "src/",
             "SilverStripe\\SpamProtection\\Tests\\": "tests/"
         }
     },
