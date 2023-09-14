@@ -3,7 +3,6 @@
 namespace SilverStripe\SpamProtection;
 
 use SilverStripe\Core\ClassInfo;
-use SilverStripe\Core\Convert;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldGroup;
