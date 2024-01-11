@@ -2,14 +2,14 @@
 
 namespace SilverStripe\SpamProtection\Extension;
 
+use SilverStripe\Comments\Controllers\CommentingController;
 use SilverStripe\Core\Extension;
 
 /**
  * Apply the spam protection to the comments module if it is installed.
  *
- * @package spamprotection
+ * @extends Extension<CommentingController>
  */
-
 class CommentSpamProtection extends Extension
 {
     public function alterCommentForm(&$form)
