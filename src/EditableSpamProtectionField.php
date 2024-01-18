@@ -98,7 +98,7 @@ class EditableSpamProtectionField extends EditableFormField
     /**
      * Gets the list of all candidate spam detectable fields on this field's form
      *
-     * @return DataList
+     * @return DataList<EditableFormField>
      */
     protected function getCandidateFields()
     {
@@ -151,7 +151,6 @@ class EditableSpamProtectionField extends EditableFormField
      */
     public function getCMSFields()
     {
-        /** @var FieldList $fields */
         $fields = parent::getCMSFields();
 
         // Get protector

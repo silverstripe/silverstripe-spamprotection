@@ -6,14 +6,14 @@ use LogicException;
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Extension;
 use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Forms\Form;
 
 /**
  * An extension to the {@link Form} class which provides the method
  * {@link enableSpamProtection()} helper.
  *
- * @package spamprotection
+ * @extends Extension<Form>
  */
-
 class FormSpamProtectionExtension extends Extension
 {
     use Configurable;
@@ -86,7 +86,7 @@ class FormSpamProtectionExtension extends Extension
      *
      * @param array $options
      * @throws LogicException when get_protector method returns NULL.
-     * @return Object
+     * @return Form
      */
     public function enableSpamProtection($options = [])
     {
