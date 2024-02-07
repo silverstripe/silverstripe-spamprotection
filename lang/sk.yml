@@ -1,6 +1,12 @@
 sk:
   SilverStripe\SpamProtection\EditableSpamProtectionField:
     PLURALNAME: 'Polia ochrany proti spamu'
+    PLURALS:
+      few: '{count} polia ochrany proti spamu'
+      many: '{count} polí ochrany proti spamu'
+      one: 'Pole ochrany proti spamu'
+      other: '{count} polí ochrany proti spamu'
     SINGULARNAME: 'Pole ochrany proti spamu'
     SPAMFIELDMAPPING: 'Mapovanie spamového poľa'
     SPAMFIELDMAPPINGDESCRIPTION: 'Vyberte polia formulára, ktoré zodpovedajú všetkým príslušným identifikátorom ochrany proti spamu'
+    db_SpamFieldSettings: 'Nastavenia poľa spamu'
