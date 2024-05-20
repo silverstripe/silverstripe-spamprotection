@@ -127,7 +127,7 @@ class EditableSpamProtectionField extends EditableFormField
      *
      * {@inheritDoc}
      */
-    public function onBeforeWrite()
+    protected function onBeforeWrite()
     {
         $fieldMap = json_decode($this->SpamFieldSettings ?? '', true);
         if (empty($fieldMap)) {
