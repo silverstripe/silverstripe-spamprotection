@@ -86,7 +86,7 @@ class EditableSpamProtectionField extends EditableFormField
 
     /**
      * @param FormField $field
-     * @return self
+     * @return EditableSpamProtectionField
      */
     public function setFormField(FormField $field)
     {

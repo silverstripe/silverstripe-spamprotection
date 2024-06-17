@@ -71,7 +71,7 @@ class FormSpamProtectionExtension extends Extension
         if (isset($options['protector'])) {
             $protector = $options['protector'];
         } else {
-            $protector = self::config()->get('default_spam_protector');
+            $protector = static::config()->get('default_spam_protector');
         }
 
         if ($protector && class_exists($protector ?? '')) {
@@ -106,7 +106,7 @@ class FormSpamProtectionExtension extends Extension
         }
 
         // set custom mapping on this form
-        $protector = self::get_protector($options);
+        $protector = FormSpamProtectionExtension::get_protector($options);
 
         if ($protector === null) {
             throw new LogicException('No spam protector has been set. Null is not valid value.');
