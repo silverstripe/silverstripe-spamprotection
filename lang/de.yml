@@ -7,3 +7,4 @@ de:
     SINGULARNAME: Spamschutzfeld
     SPAMFIELDMAPPING: 'Spamschutzfeld Zuordnung'
     SPAMFIELDMAPPINGDESCRIPTION: 'Wähle die Formularfelder, die mit Spamschutz verbunden sind'
+    db_SpamFieldSettings: 'Spamschutzfeld Einstellungen'
