@@ -43,7 +43,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
         $formMock
             ->expects($this->never())
@@ -61,7 +61,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         $formMock->getValidator()->validationError('MyField', 'some field message', 'required');
 
@@ -82,7 +82,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->will($this->returnValue(false));
+            ->willReturn(false);
 
         // field doesn't set any validation errors here
 
@@ -123,14 +123,14 @@ class EditableSpamProtectionFieldTest extends SapphireTest
     protected function getFormMock()
     {
         $formMock = $this->getMockBuilder(Form::class)
-            ->setMethods(['sessionMessage', 'sessionError', 'getValidator'])
+            ->onlyMethods(['sessionMessage', 'sessionError', 'getValidator'])
             ->disableOriginalConstructor()
             ->getMock();
 
         $formMock
             ->expects($this->any())
             ->method('getValidator')
-            ->will($this->returnValue(new RequiredFields()));
+            ->willReturn(new RequiredFields());
 
         return $formMock;
     }
