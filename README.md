@@ -36,7 +36,7 @@ implements the `\SilverStripe\SpamProtection\SpamProtector` interface. More on t
 ## Configuring
 
 After installing this module and a protector of your choice (i.e mollom) you'll
-need to rebuild your database through `dev/build` and set the default protector
+need to rebuild your database by running `sake db:build --flush` and set the default protector
 via SilverStripe's config system. This will update any Form instances that have
 spam protection hooks with that protector.
 
@@ -124,7 +124,7 @@ class CustomSpamProtector implements SpamProtector
 ## Using Spam Protection with User Forms
 
 This module provides an `EditableSpamProtectionField` wrapper which you can add
-to your UserForm instances. After installing this module and running `/dev/build`
+to your UserForm instances. After installing this module and running `sake db:build --flush`
 to rebuild the database, your Form Builder interface will have an option for
 `Spam Protection Field`. The type of spam protection used will be based on your
 currently selected SpamProtector instance.
