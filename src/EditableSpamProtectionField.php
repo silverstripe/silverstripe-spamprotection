@@ -227,9 +227,9 @@ class EditableSpamProtectionField extends EditableFormField
             $formField->setValue($data[$this->Name]);
         }
 
-        $validator = $form->getValidator();
-        if (!$formField->validate($validator)) {
-            $errors = $validator->getErrors();
+        $result = $formField->validate();
+        if (!$result->isValid()) {
+            $errors = $result->getMessages();
             $foundError = false;
 
             // field validate implementation may not add error to validator
