@@ -14,6 +14,7 @@ use SilverStripe\Forms\TextField;
 use SilverStripe\SpamProtection\EditableSpamProtectionField;
 use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
 use SilverStripe\SpamProtection\Tests\Stub\Protector;
+use SilverStripe\Core\Validation\ValidationResult;
 
 class EditableSpamProtectionFieldTest extends SapphireTest
 {
@@ -39,11 +40,12 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formMock = $this->getFormMock();
         $formFieldMock = $this->getEditableFormFieldMock();
 
+        $result = new ValidationResult;
         $formFieldMock
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->willReturn(true);
+            ->willReturn($result);
 
         $formMock
             ->expects($this->never())
@@ -57,13 +59,13 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formMock = $this->getFormMock();
         $formFieldMock = $this->getEditableFormFieldMock();
 
+        $result = new ValidationResult;
+        $result->addFieldError('MyField', 'some field message');
         $formFieldMock
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->willReturn(false);
-
-        $formMock->getValidator()->validationError('MyField', 'some field message', 'required');
+            ->willReturn($result);
 
         $formMock
             ->expects($this->once())
@@ -78,11 +80,13 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formMock = $this->getFormMock();
         $formFieldMock = $this->getEditableFormFieldMock();
 
+        $result = new ValidationResult;
+        $result->addError('fail');
         $formFieldMock
             ->getFormField() // mock
             ->expects($this->once())
             ->method('validate')
-            ->willReturn(false);
+            ->willReturn($result);
 
         // field doesn't set any validation errors here
 
