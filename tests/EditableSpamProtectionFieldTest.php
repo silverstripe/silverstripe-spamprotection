@@ -9,7 +9,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\Form;
-use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\Validation\RequiredFieldsValidator;
 use SilverStripe\Forms\TextField;
 use SilverStripe\SpamProtection\EditableSpamProtectionField;
 use SilverStripe\SpamProtection\Extension\FormSpamProtectionExtension;
@@ -134,7 +134,7 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $formMock
             ->expects($this->any())
             ->method('getValidator')
-            ->willReturn(new RequiredFields());
+            ->willReturn(new RequiredFieldsValidator());
 
         return $formMock;
     }
