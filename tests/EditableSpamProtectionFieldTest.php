@@ -127,15 +127,9 @@ class EditableSpamProtectionFieldTest extends SapphireTest
     protected function getFormMock()
     {
         $formMock = $this->getMockBuilder(Form::class)
-            ->onlyMethods(['sessionMessage', 'sessionError', 'getValidator'])
+            ->onlyMethods(['sessionMessage', 'sessionError'])
             ->disableOriginalConstructor()
             ->getMock();
-
-        $formMock
-            ->expects($this->any())
-            ->method('getValidator')
-            ->willReturn(new RequiredFieldsValidator());
-
         return $formMock;
     }
 
