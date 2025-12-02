@@ -160,7 +160,6 @@ class EditableSpamProtectionFieldTest extends SapphireTest
         $field->Name = 'MyField';
         $reflection = new ReflectionClass($field);
         $method = $reflection->getMethod('getCandidateFields');
-        $method->setAccessible(true);
         // Assert with no parent
         $list = $method->invoke($field);
         $this->assertTrue($list instanceof DataList);
