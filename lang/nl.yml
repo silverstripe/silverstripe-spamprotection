@@ -7,3 +7,4 @@ nl:
     SINGULARNAME: 'Anti-spam veld'
     SPAMFIELDMAPPING: 'Spam-velden koppelen'
     SPAMFIELDMAPPINGDESCRIPTION: 'Kies de velden die overeenkomen met de anti-spam identifiers'
+    db_SpamFieldSettings: 'Spamveld instellingen'
